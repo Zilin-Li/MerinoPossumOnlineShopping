@@ -1,0 +1,72 @@
+{% extends 'components/base.html' %}
+{% block title %}List all Orders of a Customer{% endblock %}
+{% block content %}
+
+<div class="list-all-orders" >
+  <div class="list-all-orders-contaniner">
+
+  
+  <h1 class="text-center mb-4">Order List</h1>
+  
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Order ID</th>
+          <th scope="col">Order Date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Recipient Name</th>
+          <th scope="col">Recipient Mobile</th>
+          <th scope="col">Delivery Address</th>
+          <th scope="col">View Details</th>
+          <th scope="col">View Receipt</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in all_orders %}          
+            <tr>
+              <th scope="row">{{ loop.index }}</th>
+              <td>{{ order[0]| default('', true) }}</td>
+              <td>{{ order[2] | default('', true)}}</td>
+              <td>
+                {% if order[6] == 1 %}{{'Pending'}}{% endif %}
+                {% if order[6] == 2 %}{{'Processing'}}{% endif %}
+                {% if order[6] == 3 %}{{'Shipped'}}{% endif %}
+                {% if order[6] == 4 %}{{'Delivered'}}{% endif %}               
+              </td>
+              <td>{{ order[7] | default('', true)}}</td>
+              <td>{{ order[8] | default('', true)}}</td>          
+              <td>{{ order[9] | default('', true)}}{{', '}}{{ order[10] | default('', true)}}</td>
+              <td>
+                <a href="{{url_for('customer_track_order.view_order', order_id = order[0] )}}"  class="btn btn-custom"><i class="bi bi-eye-fill"></i>Details</a>
+              </td>  
+              <td>
+                <a href="{{url_for('customer_track_order.view_receipt', current_order_id = order[0])}}" class="btn btn-custom">Receipt</a>
+              </td>
+            </tr>          
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{{ url_for('home') }}" class="btn btn-secondary" style="min-width: 120px;font-size: 17px;">Back</a>
+    <nav aria-label="Page navigation" class="d-flex justify-content-end">
+      <ul class="pagination">
+          <li class="page-item {% if page <= 1 %}disabled{% endif %}">
+              <a class="page-link" href="{{ url_for('customer_track_order.list_order', page=page-1) }}">Previous</a>
+          </li>
+          {% for p in range(1, total_pages + 1) %}
+          <li class="page-item {% if p == page %}active{% endif %}">
+              <a class="page-link" href="{{ url_for('customer_track_order.list_order', page=p) }}">{{ p }}</a>
+          </li>
+          {% endfor %}
+          <li class="page-item {% if page >= total_pages %}disabled{% endif %}">
+              <a class="page-link" href="{{ url_for('customer_track_order.list_order', page=page+1) }}">Next</a>
+          </li>
+      </ul>
+  </nav>
+  </div>
+</div>
+</div>
+{% endblock %}

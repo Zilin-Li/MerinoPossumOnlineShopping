@@ -1,0 +1,16 @@
+.manage_reward_giftcard{
+    width: 100%;
+    min-height: 70vh;  
+    min-width: 80rem;
+    padding:3rem 0;  
+}
+.manage_reward_giftcard-container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.manage_reward_giftcard-header{
+    text-align: center;
+    padding: 20px;
+    
+}

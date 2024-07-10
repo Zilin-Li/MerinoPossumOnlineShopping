@@ -1,0 +1,20 @@
+{% extends 'components/base.html' %}
+{% block title %}Edit News{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="container my-4 py-3" style="background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <h3 class="text-center mb-4">Edit the News</h3>  
+  <div > 
+    <form method="POST" action="{{ url_for('send_news.edit_news', news_id = news_detail[0]) }}">     
+      <textarea class="form-control" id="news" name="news" rows="4" required>{{ news_detail[1] | default('', true)}}</textarea>
+      <div class="d-flex justify-content-between mt-4">
+        <a href="{{ url_for('send_news.add_news') }}" class="btn btn-secondary" style="min-width: 120px;font-size: 17px;">Back</a>
+        <button type="submit" class="btn btn-custom">Edit News</button>
+      </div>
+    </form> 
+</div>
+
+{% endblock %}
+
+
+

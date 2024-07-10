@@ -1,0 +1,119 @@
+{% extends 'components/base.html' %}
+
+{% block title %}
+Size Guide - Belmont Station Merino & Possum
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 clothing_size">
+    <div class="text-center mb-5">
+        <h1>Clothing Size Guide</h1>
+    </div>
+    <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+        <label class="btn btn-outline-secondary active" id="label-cm">
+            <input type="radio" name="options" id="cm" autocomplete="off" checked> CM
+        </label>
+        <label class="btn btn-outline-secondary" id="label-inches">
+            <input type="radio" name="options" id="inches" autocomplete="off"> INCHES
+        </label>
+    </div>
+
+    <table id="cmTable" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>NZ</th>
+                <th>BUST (CM)</th>
+                <th>WAIST (CM)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>6 (XS)</td>
+                <td>79</td>
+                <td>61</td>
+            </tr>
+            <tr>
+                <td>8 (S)</td>
+                <td>84</td>
+                <td>66</td>
+            </tr>
+            <tr>
+                <td>10 (M)</td>
+                <td>89</td>
+                <td>71</td>
+            </tr>
+            <tr>
+                <td>12 (L)</td>
+                <td>94</td>
+                <td>76</td>
+            </tr>
+            <tr>
+                <td>14 (XL)</td>
+                <td>99</td>
+                <td>81</td>
+            </tr>
+            <tr>
+                <td>16 (XXL)</td>
+                <td>104</td>
+                <td>86</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table id="inchesTable" class="table table-bordered" style="display: none;">
+        <thead>
+            <tr>
+                <th>NZ</th>
+                <th>BUST (INCHES)</th>
+                <th>WAIST (INCHES)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>6 (XS)</td>
+                <td>31.1</td>
+                <td>24.0</td>
+            </tr>
+            <tr>
+                <td>8 (S)</td>
+                <td>33.1</td>
+                <td>26.0</td>
+            </tr>
+            <tr>
+                <td>10 (M)</td>
+                <td>35.0</td>
+                <td>28.0</td>
+            </tr>
+            <tr>
+                <td>12 (L)</td>
+                <td>37.0</td>
+                <td>29.9</td>
+            </tr>
+            <tr>
+                <td>14 (XL)</td>
+                <td>39.0</td>
+                <td>31.9</td>
+            </tr>
+            <tr>
+                <td>16 (XXL)</td>
+                <td>40.9</td>
+                <td>33.9</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="mt-4">
+        <small>
+            * All measurements are a guideline relating to our own fit specifications and industry standards.<br>
+            * Some styles are only produced in XS - XL or S/M/L. For styles such as these with a more limited size range you may need to try two sizes to find which is the closest fit for you.
+        </small>
+    </p>
+</div>
+
+<!-- <script src="{{ url_for('static', filename='js/footer_info/clothing_size.js') }}"></script> -->
+{% endblock %}
+
+
+
+
+

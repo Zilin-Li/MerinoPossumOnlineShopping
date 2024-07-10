@@ -1,0 +1,31 @@
+{% extends 'components/base.html' %}
+{% block title %}Staff View Content{% endblock %}
+{% block content %}
+
+<div class="staff-message-user-details">
+  <div class="staff-message-user-details-container d-flex flex-column align-items-center" style="min-height: 80vh;">
+    <div class="card w-100 mb-4">
+      <div class="card-header text-center m-3">
+        <h2 class="text-center mb-4">Message</h2>
+      </div>
+      <div class="card-body m-5">
+        <div class="message-content mb-4" style=" padding: 20px; border-radius: 8px;">
+          <h3 class="text-center mb-4">{{ message[3] }}</h3>
+        </div>
+        {% if message[5]==0 %}
+        <div class="col-12 d-flex justify-content-center mb-4">
+          <a href="{{ url_for('staff_message_user.reply_message', receive_id=message[1]) }}" class="btn btn-custom"
+            style="min-width: 120px; font-size: 20px;">Reply</a>
+        </div>
+        {% endif %}
+        <div class="col-12 d-flex justify-content-center mt-4">
+          <a href="{{ url_for('staff_message_user.list_message_received_from_user') }}" class="btn btn-custom"
+            style="min-width: 120px; font-size: 20px;">Back</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  {% endblock %}

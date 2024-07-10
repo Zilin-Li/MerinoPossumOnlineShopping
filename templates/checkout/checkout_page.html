@@ -1,0 +1,257 @@
+{% extends 'components/base.html' %}
+{% block title %}Checkout{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<section class="checkout">
+    <form action="{{ url_for('checkout.confirm_order') }}" method="POST">
+        <div class="checkout-content">
+            <div class="checkout-content-left">
+                <div class="checkout-form">
+                    <p class="header-title">Choose an Option:</p>
+                    <div class="delivery-options">
+                        <label class="form-label selected" for="delivery">
+                            <input class="me-2" type="radio" id="delivery" name="delivery_option" value="delivery"
+                                onclick="toggleDeliveryInfo(true)" checked>
+                            Delivery
+                        </label>
+                        <label class="form-label" for="pickup">
+                            <input class="me-2" type="radio" id="pickup" name="delivery_option" value="pickup"
+                                onclick="toggleDeliveryInfo(false)">
+                            Pick up
+                        </label>
+                    </div>
+
+                    <div id="checkoutForm" class="checkout-form">
+                        <div id="deliveryInfo" class="delivery-infomations" style="display: block;">
+                            <p>Delivery Information: </p>
+                            <div class="delivery-row">
+                                <div class="first-name">
+                                    <label for="firstName" class="form-label">First name *</label>
+                                    <input type="text" class="form-control" name="first_name" id="firstName" required
+                                        pattern="[A-Za-z]+" title="Only letters are allowed." maxlength="20">
+                                </div>
+                                <div class="last-name">
+                                    <label for="lastName" class="form-label">Last name *</label>
+                                    <input type="text" class="form-control" name="last_name" id="lastName" required
+                                        pattern="[A-Za-z]+" title="Only letters are allowed." maxlength="20">
+                                </div>
+                            </div>
+                            <div class="street">
+                                <label for="address" class="form-label">Street address *</label>
+                                <input type="text" class="form-control" name="street" id="street"
+                                    placeholder="House number and street name" required pattern="[A-Za-z0-9 ]+"
+                                    title="No special characters." maxlength="500">
+                            </div>
+                            <div class="delivery-row">
+                                <div class="city">
+                                    <label for="city" class="form-label">Town / City *</label>
+                                    <input type="text" class="form-control" name="city" id="city" required
+                                        pattern="[A-Za-z0-9 ]+" title="No special characters." maxlength="60">
+                                </div>
+
+                                <div class="state">
+                                    <label for="state" class="form-label">State / County *</label>
+                                    <input type="text" name="state" class="form-control" id="state" required
+                                        pattern="[A-Za-z0-9 ]+" title="No special characters." maxlength="100">
+                                </div>
+
+                            </div>
+                            <div class="delivery-row">
+                                <div class="country">
+                                    <label for="country" class="form-label">Country / Region *</label>
+                                    <select id="country" name="country" class="form-control" required>
+                                        <option value="nz">New Zealand</option>
+                                        <option value="aus">Australia</option>
+                                        <option value="usa">USA</option>
+                                        <option value="can">Canada</option>
+                                        <option value="uk">UK</option>
+                                        <option value="eur">Europe</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                                <div class="postcode">
+                                    <label for="postcode" class="form-label">Postcode / ZIP *</label>
+                                    <input type="text" class="form-control" name="postcode" id="postcode" required
+                                        pattern="^[0-9]{4,6}$" title="Postcode must be 4 to 6 digits long">
+                                </div>
+                            </div>
+                            <div class="phone">
+                                <label for="mobilePhone" class="form-label">Mobile Phone *</label>
+                                <input type="tel" class="form-control" name="phone" id="mobilePhone" required
+                                    pattern="^\+?\d{10,15}$" title="Phone number must be 10 to 15 digits long">
+                            </div>
+                        </div>
+                        <input type="hidden" id="hiddenDiscount" name="discount" value="0">
+                        <input type="hidden" id="hiddenTotal" name="newtotal" value="0">
+
+                    </div>
+                </div>
+                <div class="payment-method">
+                    <div class="container mt-1">
+
+                        <div id="creditCardSection" class="card">
+                            <div class="card-header">
+                                <p>Credit/debit card</p>
+                                <!-- Card logos -->
+                                <div>
+                                    <img alt="VISA"
+                                        src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg"
+                                        role="img" width="38" height="24"
+                                        class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                    <img alt="MAESTRO"
+                                        src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg"
+                                        role="img" width="38" height="24"
+                                        class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                    <img alt="MASTERCARD"
+                                        src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg"
+                                        role="img" width="38" height="24"
+                                        class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                    <img alt="AMEX"
+                                        src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg"
+                                        role="img" width="38" height="24"
+                                        class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="cardNumber">Card Number</label>
+                                    <input type="text" class="form-control" id="cardNumber" placeholder="Card Number"
+                                        required pattern="\d{13,16}"
+                                        title="Card number must be between 13 and 16 digits.">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cardName">Name on Card</label>
+                                    <input type="text" class="form-control" id="cardName" placeholder="Name on Card"
+                                        required pattern="[A-Za-z\s]{1,10}"
+                                        title="Name must be letters only and up to 10 characters long.">
+                                </div>
+                                <div class="form-row">
+                                    <div>
+                                        <label for="cardMonth">Month</label>
+                                        <input type="text" class="form-control" id="cardMonth" placeholder="MM" required
+                                            pattern="(0[1-9]|1[0-2])" title="Month must be MM format (01-12).">
+                                    </div>
+                                    <div>
+                                        <label for="cardYear">Year</label>
+                                        <input type="text" class="form-control" id="cardYear" placeholder="YY" required
+                                            pattern="\d{2}" title="Year must be YY format.">
+                                    </div>
+                                    <div>
+                                        <label for="cardCVC">CVC</label>
+                                        <input type="text" class="form-control" id="cardCVC" placeholder="CVC" required
+                                            pattern="\d{3}" title="CVC must be 3 digits.">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-content-right">
+                <div class="review-order">
+                    <p>Review Order:</p>
+                    <div class="review-order-items">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr class="text-uppercase review-header">
+                                    <th class="check-product-group" scope="col">product</th>
+                                    <th class="check-order-quantity" scope="col">quantity</th>
+                                    <th class="check-order-subtotal" scope="col">subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody class="review-content">
+                                {% for cart_item in cart_items_list %}
+                                <tr>
+                                    <td>
+                                        <div class="product-group-td">
+                                            <div class="review-img">
+                                                <img src="{{'https://raw.githubusercontent.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_AK_IMGS/main/'+ cart_item.image_urls[0]}}"
+                                                    alt="product image">
+                                            </div>
+                                            <div class="review-product-detail">
+                                                <p>{{ cart_item.product_name }}</p>
+                                                <p class="cart-item-size">{{cart_item.size_name}}</p>
+                                                <p class="cart-item-color">COLOR:{{cart_item.color_name}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="order-quantity">
+                                        <p>{{ cart_item.order_quantity }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="order-subtotal">$ <span id="subtotal-{{ loop.index0 }}">{{
+                                                cart_item.order_price * cart_item.order_quantity }}</span> NZD</p>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% if session.role_id == 1 %}
+                        <div class="gift-card-application">
+                            <label for="giftCardNumber">GIFT CARD CODE</label>
+                            <input type="hidden" id="hiddenCardNumber" name="card-number" value="">
+                            <div>
+                                <input type="text" class="form-control" id="giftCardNumber" name="gift_card_number"
+                                    placeholder="Please enter your gift card code" pattern="[a-zA-Z0-9]{22}"
+                                    title="The gift card number must be a 22-digit alphanumeric combination.">
+                                <button type="button" id="applyGiftCard">Apply</button>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <div class="cart_total_calculate">
+                            <div class="order-price-group">
+                                <p>Subtotal</p>
+                                <p>NZD $<span id="subTotal">{{ cart_total_calculate.cart_subtotal}}</span></p>
+                            </div>
+                            <div class="order-price-group">
+                                <p>Shipping</p>
+                                <p>NZD $<span id="shippingFee">{{ cart_total_calculate.shipping_fee}}</span>
+                                </p>
+                            </div>
+                            <div id="orderDiscount" style="display:none">
+                                <div class="order-price-group">
+                                    <p>Discount</p>
+                                    <p style="color:red; ">- NZD $<span id="orderDiscountValue"></span></p>
+                                </div>
+
+                            </div>
+                            <div class="order-price-group dark">
+                                <p>Total</p>
+                                <p>NZD $<span id="totalPayment">{{
+                                        cart_total_calculate.total_incl_gst_and_shipping}}</span></p>
+                            </div>
+
+                            <div class="order-gst">
+                                <p>Includes GST of $ <span id="gst">{{cart_total_calculate.gst}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {% if session.role_id == 2 %}
+                <div class="payment-method-select mt-5 mb-3">
+                    <label for="paymentType" class="form-label mb-3">Payment Method</label>
+                    <select id="paymentType" name="paymentType" class="form-select custom-select-style">
+                        <option value="creditCard" selected>Credit/Debit Card</option>
+                        <option value="monthly">Monthly Payment</option>
+                    </select>
+                </div>
+
+                {% endif %}
+
+                <div class="checkout-button">
+                    <button type="submit" class="btn btn-dark text-uppercase mt-5">Place your Order</button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </form>
+</section>
+{% endblock %}

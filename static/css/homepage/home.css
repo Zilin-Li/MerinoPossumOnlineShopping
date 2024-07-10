@@ -1,0 +1,421 @@
+.home{
+    /* height: auto; */
+    width: 100%;
+    min-width: 80rem;
+}
+.message-line{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*---------------------- Banner style------------------------- */
+.home-banner-container{
+    position: relative;
+    /* background-color: pink ; */
+    min-width: 80rem;
+    
+
+}
+.home-banner-container .slide-1{
+    background: url('https://raw.githubusercontent.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_AK_IMGS/main/banner/banner_1.jpg') no-repeat center center;
+}
+.home-banner-container .slide-2{
+    background: url('https://raw.githubusercontent.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_AK_IMGS/main/banner/banner_2.jpg') no-repeat center center;
+}
+.home-banner-container .slide-3{
+    background: url('https://raw.githubusercontent.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_AK_IMGS/main/banner/banner_3.jpg') no-repeat center center;
+}
+
+.home-banner-container .slide{
+    width:100%;
+    height: 80vh;
+    background-size: cover  ;
+    background-position: center;    
+    position: relative;
+    overflow-x: hidden;
+}
+
+.home-banner-container .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+.home-banner-container .arrow:hover{
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.home-banner-container .arrow i{
+    color: #ccc;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);   
+}
+.home-banner-container .arrow:hover i{
+    color: white;
+}
+.home-banner-container .left{
+    left:0;
+}
+.home-banner-container .right{
+    right:0;
+}
+
+.caption{
+    position: relative;
+    width: 50%;
+    height: 100%;
+}
+
+.caption .slide-1-info{
+    margin-left: 5rem;
+    width:60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.caption .slide-2-info{
+    margin-left: 5rem;
+    width:60%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.caption .slide-3-info{
+    margin-right: 5rem;
+    width:70%;
+    position: absolute;
+    top: 50%;
+    left: 150%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.slide-1-info h1,
+.slide-2-info h1,
+.slide-3-info h1{
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+    line-height: 1.5;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.slide-2-info h1,
+.slide-3-info h1{
+    color: white;
+}
+
+
+
+.slide-1-info p,
+.slide-2-info p,
+.slide-3-info p{
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.slide-2-info p,
+.slide-3-info p{
+    color: white;
+    
+}
+.slide-1-info .btn,
+.slide-2-info .btn,
+.slide-3-info .btn{
+    margin-top: 2rem;
+    width: 200px;
+    background-color:  #692b64;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.slide-1-info .btn:hover,
+.slide-2-info .btn:hover,
+.slide-3-info .btn:hover{
+    /* width: 300px; */
+    background-color:#B674B1;
+    color: white;
+}
+
+/*---------------------- Information bar style------------------------- */
+
+.home-store-info{
+    min-width: 80rem;
+}
+
+.home-store-info .container{
+    /* width:100%; */
+    min-width: 80rem;
+    max-width: 90rem;
+    padding: 20px;
+}
+
+.home-store-info .store-item {
+    text-align: center;
+    
+}
+.home-store-info .store-item .inner {
+    padding: 31px 10px 45px;
+}
+
+.home-store-info .store-item .store-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 18px;
+    color: #505050;
+}
+
+.store-icon .fa {
+    display: inline-block;
+    font: normal normal normal 14px / 1;
+    font-size: inherit;
+    text-rendering: auto;
+}
+.home-store-info .store-item .store-title {
+    font-size: 15px;
+    line-height: 26px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #505050;
+}
+
+.home-store-info .store-item .store-text {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+p:last-child, p:last-of-type {
+    margin-bottom: 0;
+}
+
+
+/*---------------------- Category style------------------------- */
+
+.home-category-banner{
+    min-width: 80rem;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.home-category-container{
+    /* width:100%; */
+    min-width: 80rem;
+    max-width: 90rem;
+    padding: 20px 100px;
+    /* background-color: #B674B1; */
+    margin: 0 auto;
+}
+.category-grid{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); 
+    grid-template-rows: auto auto; 
+    gap: 2.5rem;
+}
+.category-grid .category-item{
+    position: relative;
+}
+.category-grid .category-item .img-box{
+    position: relative;
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden;
+
+}
+
+.category-grid .category-item a{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index:2;
+    
+}
+.category-grid .category-item img{
+    position: relative;
+    width: 100%; 
+    height: 100%; 
+    object-fit:cover; 
+    transition: transform 0.5s ease;
+}
+
+.category-item:hover img{
+    transform: scale(1.1); 
+}
+
+.category-grid .large-img {
+    grid-column: span 3; 
+    height:320px; 
+}
+
+.category-grid .small-img {
+    grid-column: span 2; 
+    height: 220px; 
+}
+
+.category-grid .content-box {
+    
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 90%;
+    text-align: center;
+    color: white; 
+    transition: all 0.5s ease; 
+    font-weight: 900;
+    font-size: 1.5rem;
+    /* z-index: 1; */
+    
+}
+
+.banner-title {
+    position: relative;
+    /* z-index: 1;  */
+}
+
+
+.category-item:hover .content-box {
+    color: #ccc; 
+}
+
+.category-item:hover img {
+    transform: scale(1.1); 
+}
+
+.img-box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2); /* 浅色蒙版 */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1; 
+}
+
+.category-item:hover .img-box::after {
+    opacity: 1; 
+
+}
+
+/*---------------------- About Us style------------------------- */
+
+.home-about-us{
+    text-align: center;
+    min-width: 80rem;
+    /* min-height:80vh; */
+    width: 100%;
+   
+    margin-bottom: 30px;
+    /* background-color: pink; */
+    padding: 10px 20%
+}
+
+.home-about-us .title {
+    color: #232323;
+    font-size: 20px;
+    margin-bottom: 0;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1.7em;
+}
+.home-about-us .sub-title {
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: .05em;
+    margin-bottom: 1.25em;
+}
+
+.home-about-us p {
+    font-size: 16px;
+    line-height: 1.7em;
+    color: #505050;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+.home-about-us .btn{
+    display: block;
+    margin-top: 2rem;
+    width: 200px;
+    background-color:  #692b64;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.home-about-us .btn:hover{
+    /* width: 300px; */
+    background-color:#B674B1;
+    color: white;
+}
+ 
+/*---------------------- Home infomation------------------------- */
+
+.nav-about-us,
+.clothing_size,
+.return-policy,
+.delivery-info{
+    min-width: 80rem;
+    min-height: 80vh;;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.return-policy .btn{
+    margin-top: 2rem;
+    width: 200px;
+    background-color:  #692b64;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.return-policy .btn:hover{
+    /* width: 300px; */
+    background-color:#B674B1;
+    color: white;
+}
+
+
+
+
+

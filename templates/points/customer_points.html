@@ -1,0 +1,55 @@
+{% extends 'components/base.html' %}
+{% block title %}Points{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<section class="customer-points">
+    <div class="customer-points-container">
+        <div class="customer-points-header">
+            <h1>Customer Points</h1>
+        </div>
+        
+            <div class="customer-points-card">             
+                    <p class="customer-points-card-text">🎉🎉🎉 Great news! You currently have <span class="customer-points-card-text-bold">{{points}}</span> available. Redeem them today to enjoy exclusive rewards.</p>            
+            </div>   
+       
+        <div class="redeem-gift-card">
+             <h1 class="customer-points-card-text">You can redeem your points for gift cards: </h1>
+            
+          
+            <form action="{{ url_for('points.redeem_gift_card') }}" method="post">
+               
+                    <!-- display three gift cards for customer to redeem value 20, 50, 100-->
+                    <div class="customer-points-gift-cards">
+                        {% for card in gift_card_types %}
+                            <div class="customer-points-gift-card">
+                                <div class="gift-cards-img-container">
+                                    <img src="{{ url_for('static', filename='images/gift_cards/gift_card.jpg') }}" alt="Gift Cards">
+                                </div>
+                                <div class="select-gift-card">
+                                    <input type="radio" name="gift_card" value="{{ card.id }}" required>
+                                    <label>Gift Card ${{ card.value }}</label>
+                                </div>
+                                <div class="customer-points-gift-card-footer">
+                                    <p class="customer-points-gift-card-text">Redeem {{ card.redeem_points }} points</p>
+                                    {% if points >= card.redeem_points %}
+                                        <div class="alert alert-success">You can redeem this gift card!</div>
+                                    {% else %}
+                                        <div class="alert alert-warning">You need <span>{{ (card.redeem_points - points) | int }}</span> more points to redeem this gift card.</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                
+                <div class="customer-points-card-button">
+                    <button type="submit" class="btn">Redeem</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+   
+
+</section>
+{% endblock %}

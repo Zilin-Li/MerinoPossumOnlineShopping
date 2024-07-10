@@ -1,0 +1,84 @@
+@import "component/header.css";
+@import "component/footer.css";
+@import "homepage/home.css";
+@import "auth.css";
+/* @import "product_display/product_display.css"; */
+@import "product_display/product_detail.css";
+@import "product_display/category_product_list.css";
+@import "product_display/gift_cards.css";
+@import "shopping_cart/cart_page.css";
+
+@import "manager_product/product_list.css";
+@import "manager_product/product_edit.css";
+
+@import "corporate_client_credit/credit_info.css";
+@import "checkout/checkout.css";
+@import "points/customer_point.css";
+@import "manage_reward_giftcard/manage_reward_giftcard.css";
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "AnkoModerat", Arial, sans-serif;
+  text-decoration: none;
+  /* font-size: 16px; */
+  line-height: 1.5;
+  list-style: none;
+}
+
+div,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+a,
+a:visited,
+a:active,
+a:hover {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+/* sign in and sign up submit button color */
+.btn-custom {
+  background-color: #b674b1;
+  border-color: #b674b1;
+  color: #fff;
+}
+
+.btn-custom:hover {
+  background-color: #8a468a;
+  border-color: #8a468a;
+  color: antiquewhite;
+}
+

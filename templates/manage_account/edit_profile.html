@@ -1,0 +1,83 @@
+{% extends 'components/base.html' %}
+{% block title %} Edit Profile {% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="min-vh-100 d-flex justify-content-center" style="background: linear-gradient(135deg,  #af69b7 0%, #d294ce 100%);padding-top:3%; margin-top:0">
+  <div style="width: 100%; max-width: 80vw;">
+    <div class="container mt-3" >       
+      <div class="card mb-5"> 
+        <div class="card-body" style="padding:2rem 5rem">
+          <h3 class="text-dark text-center mb-5">Edit Your Profile</h3> 
+          <form method="POST" enctype="multipart/form-data"> 
+            <div class="row mb-3"> 
+                <div class="col-md-6">
+                  <label for="username" class="form-label"><strong>Username</strong></label>
+                  <input type="text" class="form-control" id="username" name="username" value="{{user[0] }}" disabled>
+                </div>
+            </div>
+
+            <div class="row mb-3"> 
+              <div class="col-md-6">
+                <label for="first_name" class="form-label"><strong>First Name</strong></label>
+                <input type="text" class="form-control" id="first_name" name="first_name" value="{{ user[2]|default('', True) }}" maxlength="50" pattern="[A-Za-z]+">
+              </div>
+              <div class="col-md-6">
+                <label for="last_name" class="form-label"><strong>Last Name</strong></label>
+                <input type="text" class="form-control" id="last_name" name="last_name" value="{{ user[3]|default('', True) }}" maxlength="50" pattern="[A-Za-z]+">
+              </div>
+            </div>
+    
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="email" class="form-label"><strong>Email</strong></label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ user[1]|default('', True) }}">
+              </div>
+              <div class="col-md-6">
+                <label for="phone" class="form-label"><strong>Phone Number</strong></label>
+                <input type="text" class="form-control" id="phone" name="phone" value="{{ user[4]|default('', True) }}"  pattern="[0-9]+" maxlength="20" >
+              </div>
+            </div>           
+    
+            <div class="row mb-3">
+              <div class="col-md-12">
+              <label for="street_address" class="form-label"><strong>Street Address</strong></label>
+              <input type="text" class="form-control" id="street_address" name="street_address" value="{{ user[5]|default('', True) }}">
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="city" class="form-label"><strong>City</strong></label>
+                  <input type="text" class="form-control" id="city" name="city" value="{{ user[6]|default('', True) }}">
+                </div>
+                <div class="col-md-6">
+                  <label for="state" class="form-label"><strong>State</strong></label>
+                  <input type="text" class="form-control" id="state" name="state" value="{{ user[7]|default('', True) }}" >
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="country" class="form-label"><strong>Country</strong></label>
+                  <input type="text" class="form-control" id="country" name="country" value="{{ user[8]|default('', True) }}">
+                </div>
+                <div class="col-md-6">
+                  <label for="post_code" class="form-label"><strong>Post Code</strong></label>
+                  <input type="text" class="form-control" id="post_code" name="post_code" value="{{ user[9]|default('', True) }}"  pattern="[0-9]+" maxlength="10" >
+                </div>
+            </div>
+
+            <br>
+            <div class="my-4 d-flex justify-content-between align-items-center"> 
+              <a href="{{ url_for('manage_account.user_profile') }}" class="btn btn-secondary" style="width: 150px; height: 40px; line-height: 24px;"><strong>Back</strong></a>
+              <button type="submit" class="btn btn-custom" style="width: 150px; height: 40px; line-height: 24px;"><strong>Update Profile</strong></button>
+            </div>            
+          </form>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'components/base.html' %}
+
+{% block title %}
+Apply for Credit Limit Increase
+{% endblock %}
+
+{% block styles %}
+<link href="{{ url_for('static', filename='css/corporate_client_credit/credit_info.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{% include 'components/message.html' %}
+<div class="container-credit-increase mt-5 mb-5">
+    <div class="credit-increase-card-container shadow-lg">
+        <div class="credit-increase-header-container  mb-4">
+            Apply for Credit Limit Increase
+        </div>
+        <div class="credit-increase-card-body card-body">
+            <form id="increase-limit-form" method="post" action="{{ url_for('corporate_client_credit.credit_limit_increase') }}">
+                <input type="hidden" id="current-credit-limit" value="{{ credit_info.credit_limit }}">
+                <input type="hidden" name="user_id" value="{{ user_id }}">
+                <div class="form-group">
+                    <label for="requested-limit " style="font-weight: bold;">Requested Limit</label>
+                    <input type="number" class="form-control mt-2" id="requested-limit" name="requested_limit" style="height:60px" required>
+                </div>
+                <div class="text-center-credit-increase mt-4-credit-increase m-5">
+                    <button type="submit" class="btn btn-primary-credit-increase" >Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

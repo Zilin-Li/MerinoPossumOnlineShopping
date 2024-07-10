@@ -1,0 +1,97 @@
+{% extends 'components/base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="product-edit-container">
+    <div class="edit-back-button">
+        <a href="{{ url_for('product_management.list_products') }}">
+            <input type="button" class="btn btn-secondary" id="backToProductlist" name="backToProductlist" value="Back">
+        </a>
+    </div>
+</div>
+<section class="product-edit-container">
+    <div class="edit-left-container">
+        <div class="product-edit-main-image" style="display: none;">
+            <img id="product-img-display" src="" alt="Main Image">
+            <button class="close-button" id="remove_image" name="remove_image">X</button>
+        </div>
+        <div class="product-edit-main-image-button">    
+            <div>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#uploadImageModal">
+                    <svg fill="none" height="64" viewBox="0 0 24 24" width="64" xmlns="http://www.w3.org/2000/svg"><g stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m3 14v6c0 1.1046.89543 2 2 2h14c1.1046 0 2-.8954 2-2v-6"/><path d="m12 17v-14m0 0-5 5.44446m5-5.44446 5 5.44444"/></g></svg>    
+                </a> 
+            </div>
+        </div>
+    </div>  
+    <div class="edit-right-container">
+        <form action="{{ url_for('product_management.add_product_view') }}" method="POST" name="product_management">
+            <!-- product name -->
+            <div class="form-input">
+                <label for="productName" class="form-label">Product Name <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" name="productName" id="productName" maxlength="30" required
+                value="">
+            </div>
+
+            <div class="row">
+                <!-- Product brand -->
+                <div class="col-md-6">
+                    <div class="form-input">
+                        <label for="price" class="form-label">Base Price <span style="color: red;">*</span></label>
+                        <input class="form-control" type="number" id="price" name="price" min="0.00" max="9999999.99" value="" step="0.01" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-input">
+                        <label for="category" class="form-label">Category</label>
+                        <select name="category" id="category" class="sizes-dropdown form-select">
+                            {% for category in all_categories %}
+                            <option value="{{ category.id }}"
+                            >{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <!-- Product brand -->
+                <div class="col-md-6">
+                    <div class="form-input">
+                        <label for="brand" class="form-label">Brand</label>
+                        <select name="brand" id="brand" class="sizes-dropdown form-select">
+                            {% for brand in all_brands %}
+                            <option value="{{ brand.id }}"
+                            >{{ brand.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- product description -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" id="description" class="form-control" rows="5" ></textarea>
+            </div>
+
+            <input name="main_image" id="main_image" type="text" value="" hidden />
+            <button type="submit" class="form-control btn btn-primary">Save</button>
+        </form>
+    </div>
+</section>
+<div class="modal fade" id="uploadImageModal" tabindex="-1" aria-labelledby="uploadImageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadImageModalLabel">Upload Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body upload-image-modal" style="height: 200px;">
+                <input type="text" class="form-control" id="GuideId" name="GuideId" value="" hidden />  
+                <input type="text" class="form-control" name="image_url" id="image_url" />&nbsp;
+                <button type="button" class="btn btn-info" id="uploadButton" name="uploadButton" >Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

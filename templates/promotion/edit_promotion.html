@@ -1,0 +1,45 @@
+{% extends 'components/base.html' %}
+
+{% block title %}
+Edit promotion
+{% endblock %}
+
+{% block content %}
+{% include 'components/message.html' %}
+<div class="container my-5">
+  <h1 class="mb-4">Edit Promotion</h1>
+  <form method="post" action="{{ url_for('manage_promotion.edit_promotion', promotion_id=promotion.id) }}">
+    <div class="mb-3">
+      <label for="promotion_name" class="form-label">Promotion Name</label>
+      <input type="text" class="form-control" id="promotion_name" name="promotion_name"
+        value="{{ promotion.promotion_name }}" required>
+    </div>
+    <div class="mb-3">
+      <label for="start_date" class="form-label">Start Date</label>
+      <input type="date" class="form-control" id="start_date" name="start_date" value="{{ promotion.start_date }}"
+        disabled>
+    </div>
+    <div class="mb-3">
+      <label for="end_date" class="form-label">End Date</label>
+      <input type="date" class="form-control" id="end_date" name="end_date" value="{{ promotion.end_date }}" disabled>
+    </div>
+    <div class="mb-3">
+      <label for="discount_rate" class="form-label">Discount Rate</label>
+
+      <input type="number" step="0.01" min="0" max="0.99" class="form-control" id="discount_rate" name="discount_rate"
+        value="{{ promotion.discount_rate }}" required>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" name="description" rows="4">{{ promotion.description }}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="is_active">Is Active</label>
+      <input type="checkbox" name="is_active" id="is_active" {% if promotion.is_active %}checked{% endif %}>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Promotion</button>
+  </form>
+</div>
+
+
+{% endblock %}

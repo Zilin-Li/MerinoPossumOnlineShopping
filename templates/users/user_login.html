@@ -1,0 +1,88 @@
+{% extends 'components/base.html' %}
+
+{% block title %}
+Sign In
+{% endblock %}
+
+{% block content %}
+<div class="authentication-page">
+  <div class="container login-content">
+    <div class="row justify-content-center align-content-center">
+      <div class="col-md-8 login-form">
+        <h3>Belmont Station Sign In</h3>
+        <hr>
+        {% include 'components/message.html' %}
+        <form class="mt-5" method="POST" action="{{ url_for('users.login') }}">
+          {{ form.csrf_token }}
+
+          <div class="form-group my-3">
+            {{ form.username_or_email.label(class="font-weight-bold") }}
+            {{ form.username_or_email(class="form-control mt-2") }}
+            {% for error in form.username_or_email.errors %}
+            <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="form-group my-3">
+            {{ form.password.label(class="font-weight-bold") }}
+            {{ form.password(class="form-control mt-2") }}
+            {% for error in form.password.errors %}
+            <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <button type="submit" class="btn btn-custom btn-block my-3 login-submit">Login</button>
+        </form>
+        <!-- <p>Don't have an account? <a href="{{ url_for('users.register') }}">Sign Up</a></p> -->
+      </div>
+    </div>
+  </div>
+  <div class="container gradient-border">
+    <div class=" register-info-content row justify-content-center align-content-center">     
+        <div class="col-md-10">
+          <h3>Don't have an account?</h3>
+          <a href="{{ url_for('users.register') }}" class="btn btn-outline-dark">Join Today</a>
+          <div class="why-register">
+           
+            <ul>
+              <li><h3>Why create an account?</h3></li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                  <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+                </svg>
+                <div>
+                  <p >Faster checkout</p>
+                  <p class="reason">No need to enter contact and delivery details again.</p>
+                </div>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg"  width="25" height="25" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
+                  <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+                </svg>
+                <div>
+                  <p >Keep track of orders</p>
+                  <p class="reason">Easy to check progress and look up past orders.</p>
+                </div>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg"  width="25" height="25" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                </svg>
+                <div>
+                  <p>Use your wishlist</p>
+                  <p class="reason">Save things you love so you can buy them later.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+ 
+
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

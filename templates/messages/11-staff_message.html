@@ -1,0 +1,38 @@
+{% extends 'components/base.html' %}
+
+{% block title %}
+Staff Send Message
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <h1 class="mt-5 mb-4">Staff Messages</h1>
+  {% include 'components/message.html' %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Sender</th>
+        <th>Message Content</th>
+        <th>Sent Time</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for message in messages %}
+      <tr>
+        <td>{{ message[7] }}</td>
+        <td>{{ message[3] }}</td>
+        <td>{{ message[4] }}</td>
+        <td>
+          <a href="{{ url_for('messages.staff_reply_user', receive_id=message[1]) }}"
+            class="btn btn-primary btn-sm me-1">Reply</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}

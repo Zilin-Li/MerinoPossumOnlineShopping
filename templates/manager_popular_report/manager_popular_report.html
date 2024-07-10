@@ -1,0 +1,113 @@
+{% extends 'components/base.html' %}
+{% block title %}Popular Products Report{% endblock %}
+
+{% block content %}
+{% include 'components/message.html' %}
+
+<div class="container mt-5 mb-5">
+    <h1 class="text-center ">Popular Products Report</h1>
+
+    <form id="filterForm" method="get" action="">
+        <div class="row mb-4">
+            <div class="col">
+                <label for="period">Period</label>
+                <select id="period" name="period" class="form-control" onchange="document.getElementById('filterForm').submit();">
+                    <option value="month" {% if period == 'month' %}selected{% endif %}>Month</option>
+                    <option value="quarter" {% if period == 'quarter' %}selected{% endif %}>Quarter</option>
+                    <option value="year" {% if period == 'year' %}selected{% endif %}>Year</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="metric">Metric</label>
+                <select id="metric" class="form-control">
+                    <option value="quantity">Quantity</option>
+                    <option value="sales_revenue">Sales Revenue</option>
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <div class="row mb-4">
+        <div class="col">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Total Sales Revenue</th>
+                        <th>Total Units Sold</th>
+                        <th>Total Orders</th>
+                        <th>Average Order Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in report_data %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[4] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/popular_report/popular_report.js') }}"></script>
+<script id="reportData" type="application/json">{{ report_data | tojson | safe }}</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

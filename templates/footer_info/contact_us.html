@@ -1,0 +1,43 @@
+{% extends 'components/base.html' %}
+
+{% block title %}
+Contact Information
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  {% include 'components/message.html' %}
+  <div class="text-center mb-5">
+    <h1>Belmont Station Merino & Possum</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-12 mb-4">
+      <div class="contact-info p-4 bg-light border rounded h-100 shadow-sm">
+        <h2 class="mb-4">Contact Information</h2>
+        <p><strong>Company:</strong> Belmont Station Merino & Possum</p>
+        <p><strong>Address:</strong> Belmont Station, Mid Canterbury, New Zealand</p>
+        <p><strong>Email:</strong> <a href="mailto:info@belmontmerino.com">info@belmontmerino.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+641234567">+64 123 4567</a></p>
+        <p><strong>Website:</strong> <a href="http://www.belmontmerino.com" target="_blank">www.belmontmerino.com</a>
+        </p>
+        <hr>
+        <h2 class="mt-5">Send a Message</h2>
+        <form method="POST" action="{{ url_for('user_sent_message_to_staff.user_send_message_to_staff') }}">
+          <div class="mb-3">
+            <label for="message_content" class="form-label">Message Content:</label>
+            <textarea name="message_content" id="message_content" class="form-control" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Send Message</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-12 mb-4">
+      <div class="location p-4 bg-light border rounded h-100 shadow-sm">
+        <h2 class="mb-4">Location</h2>
+        <img src="{{ url_for('static', filename='images/map/map1.jpg') }}" class="img-fluid rounded"
+          alt="Belmont Station Location">
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,161 @@
+.customer-points{
+    width: 100%;
+    min-height: 70vh;  
+    min-width: 80rem;
+    padding:3rem 0;  
+}
+
+.customer-points-container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.customer-points-header {
+    text-align: center;
+    padding: 20px;
+    
+}
+
+.customer-points-card {
+    width:100%;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    width: 100%; 
+    height: 60px;
+    margin: 10px;
+    padding-left: 3rem;
+    line-height: 60px;
+}
+.customer-points-card p{
+    height:100%;
+    line-height: 60px;
+}
+.customer-points-card-text {
+    font-size: 16px;
+    color: #333; 
+    margin: 0;
+    line-height: 1.5; 
+}
+
+.customer-points-card-text-bold {
+    font-weight: bold;
+    font-size: 24px; 
+    color: #2a7fdf; 
+    padding: 3px 0; 
+    transition: color 0.3s ease; 
+}
+
+.customer-points-card-text-bold:hover {
+    color: #1a5276; 
+}
+
+.redeem-gift-card {
+    width: 100%; 
+    margin: 2rem auto;
+    padding: 20px;
+    
+}
+
+.redeem-gift-card h1{
+    font-size: 1.5rem;
+    color: #333; 
+    margin: 0;
+    line-height: 1.5; 
+}
+
+.customer-points-gift-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    gap: 20px;
+}
+
+.customer-points-gift-card {
+    flex: 0 1 300px; /* Responsive flexbox item */
+    background: #f8f9fa; /* Subtle background color */
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.customer-points-gift-card:hover {
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.gift-cards-img-container img {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.select-gift-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #ffffff;
+}
+
+.select-gift-card input[type="radio"] {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.select-gift-card label {
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+.customer-points-gift-card-footer {
+    padding: 15px;
+    background: #ffffff;
+}
+
+.customer-points-gift-card-text {
+    font-size: 16px;
+    color: #666;
+}
+
+.customer-points-gift-card-footer .alert {
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.customer-points-gift-card-footer .alert-success {
+    background-color: #28a745;
+}
+
+.customer-points-gift-card-footer .alert-warning {
+    background-color: #ff0707;
+}
+
+.customer-points-gift-card-footer .alert-warning span {
+    font-weight: bold;
+    color:black;
+}
+.customer-points-card-button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.customer-points-card-button button{
+    padding: 10px 20px;
+    width: 100%;
+    background-color:  #692b64;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.customer-points-card-button button:hover{
+    background-color:#B674B1;
+    color: white;
+}

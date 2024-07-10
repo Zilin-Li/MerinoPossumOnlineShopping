@@ -1,0 +1,106 @@
+{% extends 'components/base.html' %}
+{% block title %}staff manage inventory{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="container my-4 py-3" style="background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <h2 class="text-center mb-4">Inventory List</h2>  
+  <div class="d-flex justify-content-between align-items-end pb-5"> 
+    <form method="get" action="{{ url_for('staff_manage_inventory.display_inventory') }}" class="flex-grow-1">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group" style="font-size: 17px;">
+            <label for="name"><strong>Name:</strong></label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Inventory Name">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group" style="font-size: 17px;">
+            <label for="quantity"><strong>Quantity:</strong></label>
+            <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Inventory Quantity" min="0" step="1">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group" style="font-size: 17px;">
+            <label for="variant_id"><strong>Variant ID:</strong></label>
+            <input type="number" name="variant_id" class="form-control" id="variant_id" placeholder="Variant ID" min="1" step="1">
+          </div>
+        </div>
+        <div class="col-md-3 d-flex align-items-end" > 
+          <button type="submit" class="btn btn-custom" style="min-width: 80px;font-size: 20px;">Filter</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead class="table-success" >
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Variant ID</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Color Name</th>
+          <th scope="col">Size Name</th>
+          <th scope="col">Stock Quantity </th>
+          <th scope="col">New Quantity </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for inventory in inventory_list %}
+          <form method="POST" action="{{ url_for('staff_manage_inventory.display_inventory') }}" >
+            {% if inventory[4] == 0 %}   
+              <tr class="table-danger">
+                <th scope="row">{{ loop.index }}</th>
+                <td>
+                  {{ inventory[0]| default('', true) }}
+                  <input type="hidden" id="variant_id" name="variant_id" value="{{inventory[0]}}">
+                </td>
+                <td>{{ inventory[1] | default('', true)}}</td>
+                <td>{{ inventory[2] | default('', true)}}</td>
+                <td>{{ inventory[3] | default('', true)}}</td>
+                <td>0</td>
+                <td>
+                  <input type="number" id="stock_quantity" name="stock_quantity" min="0" step="1" class="form-control" onchange="this.form.submit()">
+                </td>
+              </tr>
+            {% else%}                        
+              <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>
+                  {{ inventory[0]| default('', true) }}
+                  <input type="hidden" id="variant_id" name="variant_id" value="{{inventory[0]}}">
+                </td>
+                <td>{{ inventory[1] | default('', true)}}</td>
+                <td>{{ inventory[2] | default('', true)}}</td>
+                <td>{{ inventory[3] | default('', true)}}</td>
+                <td>{{ inventory[4] | default('', true)}}</td>
+                <td>
+                  <input type="number" id="stock_quantity" name="stock_quantity" min="0" step="1" class="form-control" onchange="this.form.submit()">
+                </td>
+              </tr>
+            {% endif %}
+          </form>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{{ url_for('home') }}" class="btn btn-secondary" style="min-width: 120px;font-size: 17px;">Back</a>
+    <nav aria-label="Page navigation" class="d-flex justify-content-end">
+      <ul class="pagination">
+          <li class="page-item {% if page <= 1 %}disabled{% endif %}">
+              <a class="page-link" href="{{ url_for('staff_manage_inventory.display_inventory', page=page-1, name=name, quantity=quantity, variant_id=variant_id) }}">Previous</a>
+          </li>
+          {% for p in range(1, total_pages + 1) %}
+          <li class="page-item {% if p == page %}active{% endif %}">
+              <a class="page-link" href="{{ url_for('staff_manage_inventory.display_inventory', page=p, name=name, quantity=quantity, variant_id=variant_id) }}">{{ p }}</a>
+          </li>
+          {% endfor %}
+          <li class="page-item {% if page >= total_pages %}disabled{% endif %}">
+              <a class="page-link" href="{{ url_for('staff_manage_inventory.display_inventory', page=page+1, name=name, quantity=quantity, variant_id=variant_id) }}">Next</a>
+          </li>
+      </ul>
+  </nav>
+  </div>
+</div>
+{% endblock %}

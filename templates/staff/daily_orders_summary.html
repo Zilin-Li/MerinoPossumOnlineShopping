@@ -1,0 +1,78 @@
+{% extends 'components/base.html' %}
+{% block title %}daily orders summary{% endblock %}
+{% block content %}
+
+<div class="container my-4 py-3" style="background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h3 class="text-center mt-5 " style="color: #b674b1;">Daily Summary of Orders</h3>  
+
+    <div class="d-flex justify-content-center mt-5" style="font-size: 40px;">
+        <div class="col-md-5" style="margin: 0 auto;">
+            <form method="GET" action="{{ url_for('daily_orders_summary.display_summary') }}">
+                <div class="input-group">
+                    <span class="input-group-text" style="font-size: 20px;">Choose a Date</span>
+                    <input type="date" class="form-control" id="date" name="date" style="font-size: 20px;">
+                    <button class="btn btn-custom" style="font-size: 20px;">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h4 class="d-flex justify-content-center mt-5" style="color:  #b674b1;">Total Order Numbers:&nbsp;&nbsp;{{ summary[0] }} </h4>
+
+    <details>
+        <summary><h4 class="d-flex justify-content-center mt-5" style="color: #b674b1; ">Total Items Ordered:&nbsp;&nbsp; {{ summary[1] }} </h4></summary>
+        <div class="table-responsive mt-3">
+            <table class="table align-middle">
+              <thead class="table-success" >
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Quantity</th>       
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in item_list %}
+                    <tr>
+                      <th scope="row">{{ loop.index }}</th>
+                      <td>{{ item[0]| default('', true) }}</td>
+                      <td>{{ item[1] | default('', true)}}</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary><h4 class="d-flex justify-content-center mt-5" style="color:  #b674b1;">Delivery Addresses:{% for country in country_list %} &nbsp;&nbsp;{{ country[0] }} {% endfor %}</h4></summary>
+        <div class="table-responsive mt-3">
+            <table class="table align-middle">
+              <thead class="table-success" >
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">City</th>
+                  <th scope="col">State</th> 
+                  <th scope="col">Country</th>    
+                  <th scope="col">Order Numbers</th>   
+                </tr>
+              </thead>
+              <tbody>
+                {% for address in address_list %}
+                    <tr>
+                      <th scope="row">{{ loop.index }}</th>
+                      <td>{{ address[0] | default('', true) }}</td>
+                      <td>{{ address[1] | default('', true)}}</td>
+                      <td>{{ address[2] | default('', true)}}</td>
+                      <td>{{ address[3] | default('', true)}}</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>  
+    </details>
+
+    <div class="d-flex justify-content-center mt-5">
+        <a href="{{ url_for('home') }}" class="btn btn-secondary" style="min-width: 120px;font-size: 17px;">Back</a>
+    </div>
+</div>
+{% endblock %}

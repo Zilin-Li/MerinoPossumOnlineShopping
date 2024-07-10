@@ -1,0 +1,40 @@
+{% extends 'components/base.html' %}
+{% block title %}manager view invoice{% endblock %}
+{% block content %}
+
+<div class="container my-4 py-3" style="background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <h2 class="text-center mb-4">Unpaid Invoice List</h2>
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Invoice ID</th>
+          <th scope="col">Order ID</th>
+          <th scope="col">Total Price (incl. GST)</th>
+          <th scope="col">Shipping Fee (NZD)</th>
+          <th scope="col">Discounted Price (NZD)</th>         
+        </tr>
+      </thead>
+      <tbody>
+        {% for invoice in invoice_detail %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ invoice[0] | default('', true) }}</td>
+          <td>
+            <a href="{{url_for('manager_monitor_client.view_order', order_id = invoice[1] )}}"  class="btn btn-custom"><i class="bi bi-eye-fill"></i>{{ invoice[1] | default('', true) }}</a>
+          </td>
+          <td>{{ invoice[2] | default('', true)}}</td>
+          <td>{% if invoice[3]==0 %} 0 {% else %} {{ invoice[3]| default('', true)}} {% endif %}</td>
+          <td>{{ invoice[4] | default('', true)}}</td>      
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{{ url_for('manager_monitor_client.display_account') }}" class="btn btn-secondary" style="min-width: 120px;font-size: 17px;">Back</a>
+  </div>
+</div>
+{% endblock %}

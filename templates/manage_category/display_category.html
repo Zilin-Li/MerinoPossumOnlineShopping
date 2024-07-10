@@ -1,0 +1,45 @@
+{% extends 'components/base.html' %}
+{% block title %}Manage Category{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<section class="manage_reward_giftcard">
+    <div class="manage_reward_giftcard-container">
+        <div class="manage_reward_giftcard-header">
+            <h1>Manage Category</h1>
+        </div>
+        
+        <div class="mb-4 text-end">
+            <a href="#" class="btn btn-success">Create Category</a>
+          </div>
+
+        <div class="table-responsive">
+            <table class="table align-middle text-center">
+                <thead class="table-success">
+                    <tr>
+                        <th scope="col" class="text-center">Category ID</th>
+                        <th scope="col" class="text-center">Category Name</th> 
+                        <th scope="col" class="text-center">Delete</th>                        
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for category in category_list %}
+                    <tr>  
+                        <td>{{ category[0]}}</td>                        
+                        <td class="text-center"> 
+                            <form action="{{ url_for('manage_category.edit_category', category_id = category[0]) }}" method="post" class="d-flex align-items-center justify-content-center"> 
+                                <input type="text" name="category_name" class="form-control me-2" value="{{ category[1] }}"  style="width: auto; margin-right: 10px;"> 
+                                <input type="hidden" name="category_id" value="{{ category[0] }}">
+                                <button type="submit" class="btn btn-outline-primary">Update</button> 
+                            </form>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-primary">Delete</a>
+                        </td>                       
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+</section>
+{% endblock %}

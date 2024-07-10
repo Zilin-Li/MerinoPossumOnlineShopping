@@ -1,0 +1,195 @@
+{% extends 'components/base.html' %}
+{% block title %}Gift Cards{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<section class="gift-cards-section">
+
+    <div class="gift-cards-container">
+        <form action="{{ url_for('categories.purchase_gift_card') }}" method="post"  enctype="multipart/form-data">
+            <div class="gift-cards-header">
+                <h1>Choose Your Gift Cards</h1>
+            </div>
+            <div class="gift-cards-content">
+
+                <div class="gift-cards-content-left">
+                    <div class="gift-cards-img-container">
+                        <img src="{{ url_for('static', filename='images/gift_cards/gift_card.jpg') }}" alt="Gift Cards">
+                    </div>
+                    <div class="gift-cards-selection-container">
+
+                        <div class="gift-cards-selection">
+                            <div class="card-quantity-selection">
+                                <p>select quantity</p>
+                                <div class="card-quantity-info">
+                                    <p>Maximum 5 Gift Cards per order</p>
+                                    <select name="quantity" id="quantity" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-amount-selection">
+
+                                <p>select amount</p>
+                                <div class="card-button-group">
+                                    {% for card in gift_card_list %}
+                                    <button type="button" class="amount-btn" data-value="{{ card.id }}">${{
+                                        card.value }}</button>
+                                    {% endfor %}
+                                </div>
+                                <input type="hidden" id="selectedValue" name="amount" value="">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gift-cards-content-right">
+                    <div class="gift-cards-details">
+                        <p class="details-header">Gift Card Details</p>
+                        <div class="collapsible">
+                            <div class="collapsible-header">
+                                <h2>About Your Pick Gift Card</h2>
+                                <span class="collapsible-arrow">&#9650;</span>
+                            </div>
+                            <div class="collapsible-content">
+                                <div>
+                                    <p>The 'Your Pick' Gift Card is the perfect gift for anyone who loves convenience,
+                                        flexibility and choice.</p>
+    
+                                    <p>Your recipient can exchange their 'Your Pick' Gift Card for up to five Gift Cards at
+                                        a time from over 40 brands. No matter the occasion, gift a 'Your Pick' Gift Card and
+                                        your recipient is sure to find something they love.</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="collapsible">
+                            <div class="collapsible-header">
+                                <h2>How and where to redeem</h2>
+                                <span class="collapsible-arrow">&#9650;</span>
+                            </div>
+                            <div class="collapsible-content">
+                                <div>
+                                    <p>1.When you purchase the 'Your Pick' Gift Card or receive it as a gift, you'll get an
+                                        email or SMS with an unique link to access the Gift Card</p>
+                                    <p>2.When you open the 'Your Pick' Gift Card, you'll see the list of participating
+                                        retailers' cards that you can redeem the 'Your Pick' Gift Card for. You'll also see
+                                        the available balance on your card, as well as a button or a link to redeem the
+                                        'Your Pick' Gift Card</p>
+                                    <p>3.When you click on the button or link, you'll be taken to the 'Your Pick' Gift Card
+                                        portal. Here, you can choose the participating retailer's digital gift card(s) you
+                                        want to redeem for, and the amount you want to load onto each card</p>
+                                    <p>4.Once you've made your selections, the participating retailer's digital gift card(s)
+                                        will be delivered to you electronically via email or SMS</p>
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="collapsible">
+                            <div class="collapsible-header">
+                                <h2>How and where to redeem</h2>
+                                <span class="collapsible-arrow">&#9650;</span>
+                            </div>
+                            <div class="collapsible-content">
+                                <div>
+                                    <p>1. By purchasing or using a 'Your Pick' Gift Card you agree to the full 'Your Pick'
+                                        Gift Card terms and conditions available at T&Cs page .</p>
+                                    <p>2. A Your Pick Gift Card can only be Redeemed for Digital Gift Cards issued by
+                                        Participating Retailers. A list of Participating Retailers is available at Your Pick
+                                        Gift Card and may change from time to time.</p>
+                                    <p>3. A minimum of $25 and a maximum of $500 can be loaded on a Your Pick Gift Card.</p>
+                                    <p>4. Participating Retailers offer different Digital Gift Card options - some may only
+                                        support specific pre-set amounts, while others may allow you to set any value. As
+                                        your Card Balance reduces, your accessible range of Redeemable Digital Gift Cards
+                                        may also reduce. You can only Redeem for up to 5 Digital Gift Cards per Redemption
+                                        Order.</p>
+
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="gift-cards-payment">
+                        <div class="payment-method">
+                            <!-- <p>Payment:</p> -->
+                            <div class="container mt-1">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <p>Credit/debit card</p>
+                                        <!-- Card logos -->
+                                        <div>
+                                            <img alt="VISA"
+                                                src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg"
+                                                role="img" width="38" height="24"
+                                                class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                            <img alt="MAESTRO"
+                                                src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg"
+                                                role="img" width="38" height="24"
+                                                class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                            <img alt="MASTERCARD"
+                                                src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg"
+                                                role="img" width="38" height="24"
+                                                class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                            <img alt="AMEX"
+                                                src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg"
+                                                role="img" width="38" height="24"
+                                                class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        
+                                        <div class="form-group">
+                                            <label for="cardNumber">Card Number</label>
+                                            <input type="text" class="form-control" id="cardNumber"
+                                                placeholder="Card Number" required pattern="\d{13,16}"
+                                                title="Card number must be between 13 and 16 digits.">
+                                        </div>
+                                      
+                                        <div class="form-group">
+                                            <label for="cardName">Name on Card</label>
+                                            <input type="text" class="form-control" id="cardName"
+                                                placeholder="Name on Card" required pattern="[A-Za-z\s]{1,10}"
+                                                title="Name must be letters only and up to 10 characters long.">
+                                        </div>
+                                      
+                                        <div class="form-row">
+                                            <div>
+                                                <label for="cardMonth">Month</label>
+                                                <input type="text" class="form-control" id="cardMonth" placeholder="MM"
+                                                    required pattern="(0[1-9]|1[0-2])"
+                                                    title="Month must be MM format (01-12).">
+                                            </div>
+                                            <div>
+                                                <label for="cardYear">Year</label>
+                                                <input type="text" class="form-control" id="cardYear" placeholder="YY"
+                                                    required pattern="\d{2}" title="Year must be YY format.">
+                                            </div>
+
+                                            <div>
+                                                <label for="cardCVC">CVC</label>
+                                                <input type="text" class="form-control" id="cardCVC" placeholder="CVC"
+                                                    required pattern="\d{3}" title="CVC must be 3 digits.">
+                                            </div>
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-gift-card-submit">
+                        <button type="submit" class="btn btn-dark text-uppercase">Place  your Order</button>
+
+                    </div>
+                    
+                </div>
+        </form>
+        </div>
+</section>
+{% endblock %}

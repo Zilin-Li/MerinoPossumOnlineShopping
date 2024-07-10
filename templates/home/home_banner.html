@@ -1,0 +1,40 @@
+<section class="home-banner-container">
+    <div class="arrow left" onclick="banner_prev()">
+        <i class="fa-solid fa-angle-left"></i>
+    </div>
+    <div class="slide slide-1">
+        <div class="caption">
+            <div class="slide-1-info">
+                <h1 class="text-uppercase">Stay warm this winter with our Winter Warm-up promotion! </h1>
+                <p>Enjoy a 10% discount on selected winter products.</p>
+                <a class="btn" href="{{ url_for('categories.display_products', category_id= 6 , category_name='promotions') }}">Shopping Now</a>
+            </div>
+        </div>
+        <div> </div>
+    </div>
+    <div class="slide slide-2">
+        <div class="caption">
+            <div class="slide-2-info">
+                <h1 class="text-uppercase">Dont miss out on our Mid-Year Madness promotion! </h1>
+                <p>Enjoy a 15% discount on a wide range of products.</p>
+
+                <a class="btn" href="{{ url_for('categories.display_products', category_id= 4 , category_name='promotions') }}">Shopping Now</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="slide slide-3">
+        <div class="caption">
+            <div class="slide-3-info">
+                <h1 class="text-uppercase">Stay warm this winter with our Winter Warm-up promotion! </h1>
+                <p>Enjoy a 10% discount on selected winter products.</p>
+
+                <a class="btn" href="{{ url_for('categories.display_products', category_id= 6 , category_name='promotions') }}">Shopping Now</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="arrow right" onclick="banner_next()">
+        <i class="fa-solid fa-angle-right"></i>
+    </div>
+</section>

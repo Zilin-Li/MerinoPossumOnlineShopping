@@ -1,0 +1,150 @@
+<div id="bsmp-section-header" class="bsmp-section">
+    <div class="alert alert-dismissible fade show home_top_note" style="margin-bottom:0;" role="alert">
+        <div class="rolling-text-container">
+            <p class="rolling-text"> {% if g.selected_news %}{{ g.selected_news }}{% else %} Orders exceeding $200 qualify for free shipping {% endif %}</p>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="header-top-bar">
+        <div class="bmsp-logo">
+            <a class="" href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='images/logo/logo2.jpg') }}" alt="Logo">
+            </a>
+        </div>
+        <div class="header-autocomplete bg-light rounded rounded-pill shadow-sm">
+            <div class="input-group">
+                <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1"
+                    class="form-control border-0 bg-light">
+                <div class="input-group-append">
+                    <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i
+                            class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="header-right-container">
+            <a class="header-icon-link" href="{{ url_for('home') }}">
+                <span class="header-icon"><svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" title=""
+                        aria-hidden="true" titleid="icon-title-Stores32" data-testid="icon-Stores32">
+                        <title>Icon/Stores/32px</title>
+                        <g id="Icon/Stores/32px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Group-5" transform="translate(2.000000, 5.000000)" fill="#241F20">
+                                <path
+                                    d="M12.8958,16 C12.5668,16 12.2408,16.147 12.0228,16.427 C11.6478,16.908 11.7348,17.603 12.2168,17.977 C12.4188,18.134 12.6568,18.21 12.8938,18.21 C13.2238,18.21 13.5498,18.063 13.7668,17.783 C14.1418,17.301 14.0548,16.607 13.5728,16.233 C13.3718,16.076 13.1328,16 12.8958,16"
+                                    id="Fill-1"></path>
+                                <path
+                                    d="M24.3,22.3 L19,22.3 L19,10 L9,10 L9,22.3 L3.7,22.3 L3.7,5.774 L24.3,2.341 L24.3,22.3 Z M10.7,22.3 L17.3,22.3 L17.3,11.7 L10.7,11.7 L10.7,22.3 Z M0,4.667 L0,6.391 L2,6.058 L2,24 L9,24 L19,24 L26,24 L26,2.058 L28,1.724 L28,0 L0,4.667 Z"
+                                    id="Fill-3"></path>
+                            </g>
+                        </g>
+                    </svg></span>
+                <p>Home</p>
+            </a>            
+            <a class="header-icon-link shopping-cart-icon" href="{{ url_for('cart.display_cart') }}">
+                {% if g.customer_cart_items is defined and g.customer_cart_items > 0 %}
+                <div class="nav-counter">{{ g.customer_cart_items }}</div>
+                {% endif %}
+                <span class="header-icon">
+                    <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" title="" aria-hidden="true"
+                        titleid="icon-title-Bag32" data-testid="icon-Bag32">
+                        <title>Icon/Bag/32px</title>
+                        <g id="Icon/Bag/32px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <path
+                                d="M27.2998,27.2998 L4.6998,27.2998 L4.6998,13.6998 L7.9998,13.6998 L7.9998,16.9998 L9.6998,16.9998 L9.6998,13.6998 L22.2998,13.6998 L22.2998,16.9998 L23.9998,16.9998 L23.9998,13.6998 L27.2998,13.6998 L27.2998,27.2998 Z M9.6998,10.9998 C9.6998,7.5268 12.5268,4.6998 15.9998,4.6998 C19.4738,4.6998 22.2998,7.5268 22.2998,10.9998 L22.2998,11.9998 L9.6998,11.9998 L9.6998,10.9998 Z M23.9998,11.9998 L23.9998,10.9998 C23.9998,6.5818 20.4178,2.9998 15.9998,2.9998 C11.5818,2.9998 7.9998,6.5818 7.9998,10.9998 L7.9998,11.9998 L2.9998,11.9998 L2.9998,28.9998 L28.9998,28.9998 L28.9998,11.9998 L23.9998,11.9998 Z"
+                                id="Fill-1" fill="#253746"></path>
+                        </g>
+                    </svg>
+                </span>
+                <p>Bag</p>
+            </a>
+            <a class="header-icon-link" href="#">
+                <span class="header-icon">
+                    <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" title="" aria-hidden="true"
+                        titleid="icon-title-Heart32" data-testid="icon-Heart32">
+                        <title>Icon/Heart/32px</title>
+                        <g id="Icon/Heart/32px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <path
+                                d="M21.145,3 C19.358,3 17.63,3.963 16,5.865 C14.369,3.963 12.642,3 10.854,3 C6.524,3 3,6.992 3,11.901 C3,16.98 7.546,23.078 15.474,28.632 L16,29 L16.525,28.632 C24.454,23.078 29,16.98 29,11.901 C29,6.992 25.475,3 21.145,3 M21.145,4.6 C24.594,4.6 27.4,7.875 27.4,11.901 C27.4,16.305 23.147,21.944 16,27.044 C8.852,21.944 4.6,16.305 4.6,11.901 C4.6,7.875 7.405,4.6 10.854,4.6 C12.151,4.6 13.473,5.376 14.785,6.906 L16,8.324 L17.214,6.906 C18.526,5.376 19.849,4.6 21.145,4.6"
+                                id="Fill-1" fill="#222222"></path>
+                        </g>
+                    </svg>
+                </span>
+                <p>Wishlist</p>
+            </a>
+            {% if session.logged_in == True %}
+            {% if session.is_manager == 1 and g.count_client_application is defined and g.count_client_application > 0 %}
+            <a class="header-icon-link" href="{{ url_for('users.manager_approve_pending_corporate_client') }}">
+                <div class="nav-counter">{{ g.count_client_application }}</div>
+                <span class="header-icon" style="width:32px;height:32px;margin-left:auto;margin-right:auto;font: weight 200px; color:#222222">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#222222" id="Combined-Shape"  class="bi bi-envelope" viewBox="0 0 16 16">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
+                    </svg>
+                </span>
+                <p>Message</p>
+            </a>
+            {% elif session.role_id == 1 or session.role_id == 2 %}
+            <a class="header-icon-link" href="{{ url_for('user_sent_message_to_staff.list_message_from_staff') }}">
+                {% if g.count_message_from_staff is defined and g.count_message_from_staff > 0 %}
+                <div class="nav-counter">{{ g.count_message_from_staff }}</div>
+                {% endif %}
+                <span class="header-icon"
+                    style="width:32px;height:32px;margin-left:auto;margin-right:auto;font:weight 200px; color:#222222">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#222222" id="Combined-Shape"
+                        class="bi bi-envelope" viewBox="0 0 16 16">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z">
+                        </path>
+                    </svg>
+                </span>
+                <p>Message</p>
+            </a>
+            {% else %}
+            <a class="header-icon-link" href="{{ url_for('staff_message_user.list_message_received_from_user') }}">
+                {% if g.count_message_from_staff is defined and g.count_message_from_staff > 0 %}
+                <div class="nav-counter">{{ g.count_message_from_staff }}</div>
+                {% endif %}
+                <span class="header-icon"
+                    style="width:32px;height:32px;margin-left:auto;margin-right:auto;font:weight 200px; color:#222222">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#222222" id="Combined-Shape"
+                        class="bi bi-envelope" viewBox="0 0 16 16">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z">
+                        </path>
+                    </svg>
+                </span>
+                <p>Message</p>
+            </a>
+            {% endif %}
+            <a class="header-icon-link" href="{{ url_for('users.logout') }}">
+                <span class="header-icon">
+                    <svg width="28px" height="30px" viewBox="0 0 0.525 0.525" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0.035 0.035H0.28v0.035H0.071v0.384H0.28v0.035H0.035zm0.345 0.11 0.116 0.116 -0.116 0.127L0.354 0.364 0.432 0.28H0.14V0.245h0.29L0.355 0.17z"
+                            fill="#222222"></path>
+                    </svg>
+                </span>
+                <p>Logout</p>
+            </a>
+            {% else %}
+            <a class="header-icon-link" href="{{ url_for('users.login') }}">
+                <span class="header-icon">
+                    <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" title="User32" aria-hidden="true"
+                        titleid="icon-title-User32">
+                        <title>User32</title>
+                        <g id="Icon/User/32px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <path
+                                d="M21.0668,16.8668 C24.8958,16.8668 27.9998,19.9708 27.9998,23.7998 L27.9998,23.7998 L27.9998,28.9998 L3.9998,28.9998 L3.9998,23.7998 C3.9998,19.9708 7.1048,16.8668 10.9338,16.8668 L10.9338,16.8668 Z M21.0668,18.5668 L10.9338,18.5668 C8.0478,18.5668 5.6998,20.9138 5.6998,23.7998 L5.6998,23.7998 L5.6998,27.2998 L26.2998,27.2998 L26.2998,23.7998 C26.2998,20.9138 23.9518,18.5668 21.0668,18.5668 L21.0668,18.5668 Z M16,3.0002 C19.313,3.0002 22,5.6862 22,9.0002 C22,12.3132 19.313,15.0002 16,15.0002 C12.687,15.0002 10,12.3132 10,9.0002 C10,5.6862 12.687,3.0002 16,3.0002 Z M16,4.7002 C13.629,4.7002 11.7,6.6292 11.7,9.0002 C11.7,11.3712 13.629,13.3002 16,13.3002 C18.371,13.3002 20.3,11.3712 20.3,9.0002 C20.3,6.6292 18.371,4.7002 16,4.7002 Z"
+                                id="Combined-Shape" fill="#253746"></path>
+                        </g>
+                    </svg>
+                </span>
+                <p>Sign In/Up</p>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

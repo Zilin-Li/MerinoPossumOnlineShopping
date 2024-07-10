@@ -1,0 +1,46 @@
+{% extends 'components/base.html' %}
+{% block title %}Edit Credit Limit{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="container my-4 py-3" style="background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <h1 class="text-center mb-4">Edit Credit Limit for {{ credit_info.company_name }}</h1>
+  <form action="{{ url_for('admin_manage_credit.adjust_credit_limit_route') }}" method="post">
+    <input type="hidden" name="user_id" value="{{ user_id }}">
+    <div class="mb-3">
+      <label for="current_limit" class="form-label">Current Credit Limit:</label>
+      <input type="number" step="0.01" name="current_limit" id="current_limit" class="form-control" value="{{ credit_info.credit_limit }}" disabled>
+    </div>
+    <div class="mb-3">
+      <label for="new_limit" class="form-label">New Credit Limit:</label>
+      <input type="number" step="0.01" name="new_limit" id="new_limit" class="form-control" required>
+    </div>
+    <input type="hidden" name="admin_id" value="{{ current_user.id }}">
+    <button type="submit" class="btn btn-custom btn-primary">
+      <i class="bi bi-eye-fill"></i> Submit
+    </button>
+  </form>
+  <a href="{{ url_for('admin_manage_credit.monitor_credit_utilization_route') }}" class="btn btn-secondary mt-3" style="min-width: 120px; font-size: 17px;">Back</a>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

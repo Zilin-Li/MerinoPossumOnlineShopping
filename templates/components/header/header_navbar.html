@@ -1,0 +1,162 @@
+<div id="bsm-header-menu" class="bsm-header-menu">
+    <div class="sticky-wrapper">
+        <div class="header-nav-logo">
+            <a class="" href="/">
+                <img src="{{ url_for('static', filename='images/logo/logo2.jpg') }}" alt="Logo">
+            </a>
+        </div>
+        <div class="header-nav-con">
+            <ul class="header-main-nav">
+
+                {% for category in categories %}
+                <li class="header-main-nav-item">
+                    <a class="text-uppercase"
+                        href="{{ url_for('categories.display_products', category_id=category['id'], category_name=category['category_name']) }}">
+                        <span>{{ category['description'] }}</span>
+                    </a>
+
+                    {% if category['subcategories'] %}
+                    <div class="header-sub-nav">
+                        {% for subcategory in category['subcategories'] %}
+                        <a
+                            href="{{ url_for('categories.display_products', category_id=subcategory['id'], category_name=subcategory['subcategory_name']) }}">
+                            {{ subcategory['description'] }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+
+                <!-- Only customer can purchase a gift card -->
+                {% if session.logged_in == True and session.role_id == 1 %}
+                <li class="header-main-nav-item"><a class="text-uppercase"
+                        href="{{ url_for('categories.gift_cards') }}">
+                        <span>Gift Cards</span>
+                    </a></li>
+                {% endif %}
+
+                <li class="header-main-nav-item"><a class="text-uppercase"
+                        href="{{ url_for('footer_info.contact_info') }}">
+                        <span>About Us </span>
+                    </a></li>
+                <li class="header-main-nav-item"><a class="text-uppercase"
+                        href="{{ url_for('user_sent_message_to_staff.contact_us') }}">
+                        <span>Contact Us</span>
+                    </a></li>
+
+                <!-------- USER Dashboard  ------------->
+
+
+                <li class="header-main-nav-item">
+                    {% if session.logged_in == True and session.role_id ==1 %}
+                    <a class="text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span> My Account </span>
+                    </a>
+                    {% elif session.logged_in == True and session.role_id == 2 %}
+                    <a class="text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span>CORPORATE CLIENT</span>
+                    </a>
+                    {% elif session.logged_in == True and session.role_id == 3 and session.is_admin == 0 and
+                    session.is_manager == 0 %}
+                    <a class="text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span>Staff DashBoard</span>
+                    </a>
+                    {% elif session.logged_in == True and session.role_id == 3 and session.is_manager == 1 %}
+                    <a class="text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span>Manager DashBoard</span>
+                    </a>
+                    {% elif session.logged_in == True and session.role_id == 3 and session.is_admin == 1 %}
+                    <a class="text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span> administrator DashBoard </span>
+                    </a>
+                    {% endif %}
+                    <div class="header-sub-nav">
+                        <!-- SUB NAV FOR ALL USER -->
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('manage_account.user_profile') }}">Account Details</a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('manage_account.change_password') }}">Change Password</a>
+
+                        <!-- DashBoard for Customer -->
+                        {% if session.logged_in == True and session.role_id ==1 %}
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('customer_track_order.list_order') }}">My ORDERS</a>
+                        <a class="dropdown-item text-uppercase" href="{{ url_for('points.view_customer_points') }}">My
+                            POINTS</a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('view_gift_cards.display_gift_cards') }}">My
+                            Gift cards</a>
+                        <!-- DashBoard for Client -->
+                        {% elif session.logged_in == True and session.role_id == 2 %}
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('customer_track_order.list_order') }}">My ORDERS</a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('client_pay_invoice.display_invoice') }}">MY INVOICES</a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('corporate_client_credit.credit_info', user_id=session.user_id) }}">MY
+                            CREDIT
+                            ACCOUNT</a>
+                        {%endif%}
+                        <!-- DashBoard for All Staff -->
+                        {% if session.logged_in == True and session.role_id == 3 %}
+                        <a class="dropdown-item text-uppercase"
+                            href="{{url_for('staff_record_status.display_orders')}}">MANAGE ORDER STATUS </a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{url_for('product_management.list_products')}}">MANAGE Products </a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{url_for('staff_manage_inventory.display_inventory')}}">MANAGE Inventory</a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('manage_promotion.promotion') }}">MANAGE Promotion</a>
+
+
+                        {%endif%}
+                        {% if session.logged_in == True and session.role_id == 3 and (session.is_manager == 1 or
+                        session.is_admin == 1)%}
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('manage_customer.display_all_customers') }}">MANAGE CUSTOMER </a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('manage_staff.display_all_staff') }}">MANAGE staff </a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('manage_gift_cards.display_gift_card_types') }}">MANAGE Gift Card &
+                            Reward</a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{url_for('manager_monitor_client.display_account')}}">Client ACCOUNT Monitor </a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('manager_manage_credit.monitor_credit_utilization_route') }}">MANAGE Client
+                            CREDIT
+                        </a>
+                        <a class="dropdown-item text-uppercase" href="{{ url_for('send_news.add_news') }}">Send News</a>
+
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('manager_popular_report.show_popular_report') }}">POPULAR PRODUCTS
+                            REPORT</a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('sales_trend_report.sales_report') }}">Sales Trend Report</a>
+                        <a class="dropdown-item text-uppercase"
+                            href="{{ url_for('customer_demographics_report.display_report') }}">Customer Demographics
+                            Report</a>
+
+
+
+                        {% endif %}
+                        {% if session.logged_in == True and session.role_id == 3 %}
+
+
+                        <a class="dropdown-item text-uppercase"
+                            href="{{url_for('daily_orders_summary.display_summary')}}">Daily Orders Summary</a>
+                       
+                        {%endif%}
+
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+    </div>
+
+</div>

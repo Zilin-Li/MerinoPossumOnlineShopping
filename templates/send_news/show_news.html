@@ -1,0 +1,57 @@
+{% extends 'components/base.html' %}
+{% block title %}Show News{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="container my-4 py-3" style="background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <h3 class="text-center mb-4">Add a News</h3>  
+  <div > 
+    <form method="POST" action="{{ url_for('send_news.add_news') }}">     
+      <textarea class="form-control" id="news" name="news" placeholder="News Content" rows="3" required></textarea>
+      <div class="d-flex justify-content-between mt-4">
+        <a href="{{ url_for('home') }}" class="btn btn-secondary" style="min-width: 120px;font-size: 17px;">Back</a>
+        <button type="submit" class="btn btn-custom">Add News</button>
+      </div>
+    </form>
+  </div>
+  <br><br><br>
+  <h3 class="text-center mb-4">News List</h3>  
+  <div class="table-responsive">
+    <form method="POST" action="{{ url_for('send_news.select_news') }}" >
+      <table class="table align-middle">
+        <thead class="table-success" >
+          <tr>
+            <th scope="col" class="col-1">#</th>
+            <th scope="col" class="col-8">Content</th>
+            <th scope="col" class="col-1">Edit</th>
+            <th scope="col" class="col-1">Status</th>
+            <th scope="col" class="col-1">Select</th>
+          </tr>
+        </thead>
+        <tbody>       
+            {% for news in news_list %}
+              <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ news[1] | default('', true)}}</td>
+                <td>
+                  <a href="{{url_for('send_news.edit_news', news_id = news[0] )}}"  class="btn btn-outline-success">Edit</a>
+                </td>
+                <td><span class="badge {{'bg-success' if news[2] == 1 else 'bg-secondary'}}">{{ 'Selected' if news[2] == 1 else 'Unselected' }}</span></td>   
+                <td>                 
+                  <input type="radio" id="news_{{ news[0] }}" name="selected_news_id" value="{{ news[0] }}" {% if news[2] == 1 %}checked{% endif %}>
+                </td>         
+              </tr> 
+            {% endfor %}     
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-between mt-4">
+        <a href="{{ url_for('home') }}" class="btn btn-secondary" style="min-width: 120px;font-size: 17px;">Back</a>
+        <button type="submit" class="btn btn-success">Select News</button>
+      </div>
+    </form>
+  </div>  
+</div>
+
+{% endblock %}
+
+
+

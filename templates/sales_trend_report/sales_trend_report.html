@@ -1,0 +1,85 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+{% extends 'components/base.html' %}
+{% block title %} Sales Trend Report {% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center pt-5 pb-5"> 
+    
+    <canvas id="myChart" style="width:100%; max-width:1000px; overflow: hidden;"></canvas>
+</div>
+
+<script>
+    var time_array = [
+            {% for item in time %}
+                "{{ item }}"{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+    var all_consumption_array = [
+            {% for item in all_consumption %}
+                "{{ item }}"{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+    var customer_consumption_array = [
+            {% for item in customer_consumption %}
+                "{{ item }}"{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+    var client_consumption_array = [
+            {% for item in client_consumption %}
+                "{{ item }}"{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+    new Chart("myChart", {
+    type: "line",
+    data: {
+        labels: time_array,
+        datasets: [{ 
+        label: 'All',
+        data: all_consumption_array,
+        borderColor: "red",
+        fill: false
+        }, { 
+        label: 'Customer',
+        data: customer_consumption_array,
+        borderColor: "green",
+        fill: false
+        }, { 
+        label: 'Client',
+        data: client_consumption_array,
+        borderColor: "blue",
+        fill: false
+        }]
+    },
+    options: {
+        legend: {display: true,
+                 labels: { fontSize: 15 }
+        },
+        title: {
+            display: true,
+            text: "Sales Trend Report 2023-2024",
+            fontSize: 24},
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Consumption (NZD)',
+                    fontSize: 18
+                }
+            }],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Time (Month/Year)',
+                    fontSize: 18
+                }
+            }]
+        }
+    }
+    });
+</script>
+{% endblock %}

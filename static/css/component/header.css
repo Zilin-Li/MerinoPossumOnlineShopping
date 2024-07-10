@@ -1,0 +1,322 @@
+/* Display promotion information */
+.home_top_note{
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    width: 100%; 
+    min-width: 80rem;
+    /* max-width: 90rem; */
+    height: 60px; 
+    background-color: #B674B1; 
+    color: white; 
+
+    padding: 0 20%;
+}
+.home_top_note div{
+    width: 600px;
+}
+.home_top_note p{
+    margin-bottom: 0;
+    margin-right: 4rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.home_top_note button{
+    margin-bottom: 0;
+}
+
+/* Header top bar*/
+/* Including Logo, search bar, header icon group */
+
+.header-top-bar{
+    width: 100%;
+    min-width: 80rem;
+    max-width: 90rem;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgb(255, 255, 255);
+}
+
+.bmsp-logo{
+    display: flex;   
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 2rem 1.5rem 0px;
+    /* background-color: #B674B1; */
+    width: 18rem;
+}
+/* search bar */
+.header-autocomplete{
+    flex-grow: 1;
+    margin:  0px 2rem;
+}
+
+/* header icon group */
+.header-right-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 2rem 0 1.5rem 2rem;
+}
+
+.header-right-container a{
+    margin:auto 0.4rem;
+    padding: 0.125rem;
+    display: block;
+    height: 70px;
+    color: rgb(34, 34, 34);
+
+}
+
+.header-right-container a span{
+    display: block;
+    margin: 0px 0px 0.5rem;
+    text-align: center;
+}
+.header-right-container a:last-child {
+    margin-left: 0;
+}
+
+.header-right-container p{
+    display: block;
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.2px;
+}
+
+/* Header icon hover style */
+.header-right-container a:hover .header-icon svg path {
+    fill: #B674B1; 
+}
+.header-right-container a:hover p{
+    color: #B674B1;
+}
+
+
+/* Navbar */
+.bsm-header-menu{
+    width: 100%;
+    min-width: 80rem;
+    background-color: #505050;
+    height: 56px;
+    transition: all 0.3s; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5); 
+}
+
+.sticky-wrapper{
+    min-width: 80rem;
+    max-width: 90rem;
+    margin:0 auto;
+}
+
+.header-nav-logo{
+    width: 10%;
+    height: 56px;
+    display: flex;   
+    align-items: center;
+    display: none;
+    margin-right: 2rem;
+}
+.header-nav-logo a img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+.header-nav-con{
+    height: 56px;
+    margin:0 auto;
+
+}
+
+.header-nav-icon{
+    width: 10%;
+    height: 56px;
+    margin:0 auto;
+    /* background-color: rgb(255, 127, 127); */
+    display: none;
+}
+.header-sticky-icon{
+    height: 100%;
+    display: flex; 
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 1rem;
+}
+.header-sticky-icon a span{
+    display: block;
+    /* margin: 0px 0px 0.5rem; */
+    text-align: center;
+    /* border: 1px solid #fff; */
+}
+
+
+.header-sticky-icon a:hover svg path {
+    fill: #B674B1;}
+
+.header-sticky-icon svg path {
+    fill: white; 
+}
+
+
+/* Main nav */
+
+.header-main-nav{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 56px;
+    font-size: 0.8rem;
+}
+
+.header-main-nav-item{
+    position: relative;
+    height: 56px;   
+}
+.header-main-nav-item a{
+    height: 56px;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    padding: 0 2rem;
+    line-height: 56px;
+}
+
+
+.header-main-nav-item a span {
+    position: relative; 
+    padding: 0 0 5px 0;
+    display: inline-block; 
+}
+
+.header-main-nav-item a span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0; 
+    height: 2px; 
+    background-color: #ffffff; 
+    transition: width 0.5s ease; 
+}
+
+.header-main-nav-item:hover{  
+    background-color: #B674B1;
+}
+
+.header-main-nav-item:hover span::after {
+    width: 100%; 
+}
+
+/* SUB NAV   */
+.header-main-nav-item .header-sub-nav{
+    width: 18.5rem;
+    height: auto;
+    
+    opacity: 0;             
+    visibility: hidden;     
+    position: absolute;
+    top: 56px;
+    left: 0;
+    box-shadow: 2px 2px 5px rgba(80, 80, 80, 0.2);
+    z-index: 1000;
+    transition: opacity 0.5s, visibility 0s 0.5s; 
+}
+.header-main-nav-item .header-sub-nav a{
+    display: block;
+    height:50px;
+    line-height: 40px;
+    padding: 0.5rem 1rem;
+    color: #222;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: left;
+    background-color: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    /* transition: background-color 0.5s; */
+}
+
+.header-main-nav-item:hover .header-sub-nav{
+    opacity: 1;            
+    visibility: visible;    
+    transition: opacity 0.5s, visibility 0s 0s;   
+    /* background-color:#efb5ea; */
+    color: rgb(34, 34, 34);     
+}
+
+.header-main-nav-item .header-sub-nav a:hover{
+  
+    color: rgb(45, 118, 228);
+}
+
+.shopping-cart-icon{
+    /* display:block; */
+    position:relative;
+
+}
+
+.nav-counter {
+    position: absolute;
+    top: 3px;
+    right: -8px;
+    min-width: 8px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: -11px;
+    padding: 0 6px;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    background: #e23442;
+    /* border: 1px solid #911f28; */
+    border-radius: 11px;
+    background-image: -webkit-linear-gradient(top, #e8616c, #dd202f);
+    background-image: -moz-linear-gradient(top, #e8616c, #dd202f);
+    background-image: -o-linear-gradient(top, #e8616c, #dd202f);
+    background-image: linear-gradient(to bottom, #e8616c, #dd202f);
+    -webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
+    box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
+  }
+   
+  .header-icon-link {
+    position: relative; 
+    display: inline-block;
+}
+
+
+.rolling-text-container {
+    overflow: hidden;
+    width: 100%; /* Ensure the container takes up the full width */
+    position: relative;
+    height: 1.5em; /* Adjust based on your text size */
+}
+
+.rolling-text {
+    display: inline-block;
+    white-space: nowrap;
+    position: absolute;
+    animation: roll 10s linear infinite;
+}
+
+@keyframes roll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

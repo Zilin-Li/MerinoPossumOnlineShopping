@@ -1,0 +1,59 @@
+{% extends 'components/base.html' %}
+{% block title %}Credit Limit Increase Requests{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="container my-4 py-3" style="background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <h1 class="text-center mb-4">Credit Limit Increase Requests</h1>
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Requested Limit</th>
+          <th scope="col">Request Date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Approve</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for request in requests %}
+          <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ request[1] }}</td>
+            <td>{{ request[2] }}</td>
+            <td>{{ request[3] }}</td>
+            <td>
+              <form action="{{ url_for('manager_manage_credit.approve_credit_limit', request_id=request[0]) }}" method="post">
+                <button type="submit" class="btn btn-success">Approve</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <a href="{{ url_for('manager_manage_credit.monitor_credit_utilization_route') }}" class="btn btn-secondary mt-3" style="min-width: 120px; font-size: 17px;">Back</a>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

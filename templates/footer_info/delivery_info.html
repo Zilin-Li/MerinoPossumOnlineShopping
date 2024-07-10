@@ -1,0 +1,83 @@
+{% extends 'components/base.html' %}
+
+{% block title %}
+Delivery and Shipping
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container mt-5 delivery-info">
+    <div class="text-center mb-4">
+        <h2>Delivery and Shipping Information</h2>
+        <p class="lead">Find out about our delivery options and charges.</p>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header text-center" style="background-color: #B674B1; color: white;">
+            <h4>New Zealand</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="background-color: #B674B1; color: white;">
+                        <th>DELIVERY OPTIONS</th>
+                        <th>ORDER BY</th>
+                        <th>GET YOUR ORDER</th>
+                        <th>COST</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Standard Shipping (4 - 8 business days)</td>
+                        <td>3:30pm NZT<br>Monday - Friday</td>
+                        <td>Estimated Delivery By<br>Within 8 business days</td>
+                        <td>
+                            $10.00 NZD flat rate<br>
+                            FREE for orders over $200.00 NZD
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header text-center" style="background-color: #B674B1; color: white;">
+            <h4>International</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="background-color: #B674B1; color: white;">
+                        <th>DESTINATION</th>
+                        <th>COST</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Australia</td>
+                        <td>$40.00 NZD</td>
+                    </tr>
+                    <tr>
+                        <td>USA and Canada</td>
+                        <td>$60.00 NZD</td>
+                    </tr>
+                    <tr>
+                        <td>UK and Europe</td>
+                        <td>$70.00 NZD</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <p class="text-center mt-4">* Customers also have the option to choose pickup from Belmont Station.</p>
+</div>
+
+<!-- <script src="{{ url_for('static', filename='js/footer_info/delivery_info.js') }}"></script> -->
+{% endblock %}
+
+
+
+

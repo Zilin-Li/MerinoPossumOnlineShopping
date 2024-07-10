@@ -1,0 +1,70 @@
+{% extends 'components/base.html' %}
+{% block title %}client view invoice{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="client-view-invoice">
+  <div class="client-view-invoice-container">
+
+  
+  <h2 class="text-center mb-4">Unpaid Invoice List</h2>
+  <div class="d-flex justify-content-center mb-4">
+    <form action="{{ url_for('client_pay_invoice.display_payment_page_all' ) }}" method="POST">
+      <input type="hidden" id="invoice_list" name="invoice_list" value="{{ serialized_invoice_list }}">
+      <button type="submit" class="btn btn-custom" style="min-width: 120px; font-size: 20px;">Pay All Invoices</button>
+    </form>
+  </div>
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Invoice ID</th>
+          <th scope="col">Order ID</th>
+          <th scope="col">Total Price (incl. GST)</th>
+          <th scope="col">Shipping Fee (NZD)</th>
+          <th scope="col">Discounted Price (NZD)</th>  
+          <th scope="col">Pay Invoice</th>         
+        </tr>
+      </thead>
+      <tbody>
+        {% for invoice in invoice_list %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ invoice[0] | default('', true) }}</td>
+          <td>
+            <a href="{{url_for('client_pay_invoice.view_order', order_id = invoice[1] )}}"  class="btn btn-outline-success"><i class="bi bi-eye-fill"></i>{{ invoice[1] | default('', true) }}</a>
+          </td>
+          <td>{{ invoice[2] | default('', true)}}</td>
+          <td>{% if invoice[3]==0 %} 0 {% else %} {{ invoice[3]| default('', true)}} {% endif %}</td>
+          <td>{{ invoice[4] | default('', true)}}</td>   
+          <td>
+            <a href="{{url_for('client_pay_invoice.display_payment_page', invoice_id = invoice[0] )}}"  class="btn btn-outline-success"><i class="bi bi-eye-fill"></i>Pay This Invoice</a>
+          </td>   
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{{ url_for('home') }}" class="btn btn-secondary" style="min-width: 120px; font-size: 17px;">Back</a>
+    <nav aria-label="Page navigation" class="d-flex justify-content-end">
+      <ul class="pagination">
+          <li class="page-item {% if page <= 1 %}disabled{% endif %}">
+              <a class="page-link" href="{{ url_for('client_pay_invoice.display_invoice', page=page-1) }}">Previous</a>
+          </li>
+          {% for p in range(1, total_pages + 1) %}
+          <li class="page-item {% if p == page %}active{% endif %}">
+              <a class="page-link" href="{{ url_for('client_pay_invoice.display_invoice', page=p) }}">{{ p }}</a>
+          </li>
+          {% endfor %}
+          <li class="page-item {% if page >= total_pages %}disabled{% endif %}">
+              <a class="page-link" href="{{ url_for('client_pay_invoice.display_invoice', page=page+1) }}">Next</a>
+          </li>
+      </ul>
+  </nav>
+  </div>
+</div>
+  
+</div>
+{% endblock %}

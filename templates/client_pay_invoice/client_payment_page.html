@@ -1,0 +1,120 @@
+{% extends 'components/base.html' %}
+{% block title %}Checkout{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<section class="checkout">
+    <form action="{{ url_for('client_pay_invoice.confirm_payment', invoice_id = invoice[0] ) }}" method="POST">
+        <div class="checkout-content">
+            <div class="checkout-content-left">
+                <div class="payment-method">
+                    <div class="container mt-1">
+
+                        <div id="creditCardSection" class="card">
+                            <div class="card-header">
+                                <p>Credit/debit card</p>
+                                <!-- Card logos -->
+                                <div>
+                                    <img alt="VISA"
+                                        src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg"
+                                        role="img" width="38" height="24"
+                                        class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                    <img alt="MAESTRO"
+                                        src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/37fc65d0d7ac30da3b0c.svg"
+                                        role="img" width="38" height="24"
+                                        class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                    <img alt="MASTERCARD"
+                                        src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/ae9ceec48b1dc489596c.svg"
+                                        role="img" width="38" height="24"
+                                        class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                    <img alt="AMEX"
+                                        src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/f11b90c2972f3811f2d5.svg"
+                                        role="img" width="38" height="24"
+                                        class="_1fragemv9 _1fragemv4 _1fragemvi _1fragemql _1tgdqw66">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="cardNumber">Card Number</label>
+                                    <input type="text" class="form-control" id="cardNumber" placeholder="Card Number"
+                                        required pattern="\d{13,16}"
+                                        title="Card number must be between 13 and 16 digits.">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cardName">Name on Card</label>
+                                    <input type="text" class="form-control" id="cardName" placeholder="Name on Card"
+                                        required pattern="[A-Za-z\s]{1,10}"
+                                        title="Name must be letters only and up to 10 characters long.">
+                                </div>
+                                <div class="form-row">
+                                    <div>
+                                        <label for="cardMonth">Month</label>
+                                        <input type="text" class="form-control" id="cardMonth" placeholder="MM" required
+                                            pattern="(0[1-9]|1[0-2])" title="Month must be MM format (01-12).">
+                                    </div>
+                                    <div>
+                                        <label for="cardYear">Year</label>
+                                        <input type="text" class="form-control" id="cardYear" placeholder="YY" required
+                                            pattern="\d{2}" title="Year must be YY format.">
+                                    </div>
+                                    <div>
+                                        <label for="cardCVC">CVC</label>
+                                        <input type="text" class="form-control" id="cardCVC" placeholder="CVC" required
+                                            pattern="\d{3}" title="CVC must be 3 digits.">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-content-right">
+                <div class="review-order">
+                    <p>Review Invoice:</p>
+                    <div class="review-order-items">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr class="text-uppercase review-header">
+                                    <th class="check-invoice-group" scope="col">Invoice ID</th>
+                                    <th class="check-order-quantity" scope="col">Order ID</th>
+                                    <th class="check-order-subtotal" scope="col">Outstanding Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody class="review-content">
+                                <tr>
+                                    <td class="order-quantity">
+                                        <p>{{ invoice[0] }}</p>
+                                    </td>
+                                    <td class="order-quantity">
+                                        <p>{{ invoice[1] }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="order-subtotal">$ <span id="subtotal">{{ invoice[2] }}</span> NZD</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="cart_total_calculate">
+                            
+                            <div class="total-group dark">
+                                <p>Total</p>
+                                <p>NZD $<span id="total-incl-gst-shipping">{{ invoice[2] }}</span></p>
+                            </div>
+
+            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-button">
+                    <button type="submit" class="btn btn-dark text-uppercase mt-4">Confirm Payment</button>
+                </div>
+            </div>
+
+
+
+        </div>
+    </form>
+</section>
+{% endblock %}

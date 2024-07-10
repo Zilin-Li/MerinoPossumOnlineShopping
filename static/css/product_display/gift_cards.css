@@ -1,0 +1,210 @@
+.gift-cards-section,
+.customer-gift-cards,
+.user_recieve_staff_message,
+.user-message-staff-details,
+.list-all-orders,
+.customer-view-order-detail,
+.client-view-invoice,
+.staff-message-user,
+.staff-message-user-details,
+.staff-replay-user{
+    width: 100%;
+    min-height: 70vh;
+    /* background-color: #f0f0f0; */
+   
+    min-width: 80rem;
+    padding:3rem 0;
+   
+}
+.gift-cards-container,
+.customer-gift-cards-container,
+.user_recieve_staff_message_container,
+.user-message-staff-details-container,
+.credit-info-card-container,
+.list-all-orders-contaniner,
+.customer-view-order-detail-container,
+.client-view-invoice-container,
+.staff-message-user-container,
+.staff-message-user-details-container,
+.staff-replay-user-container{
+    width: 80%;
+    margin: 0 auto;
+}
+.gift-cards-header h1{
+    text-align: center;
+    font-size: 1.75rem;
+    line-height: 1.28571;
+    margin-bottom: 0;
+    font-weight: 300 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+
+}
+.gift-cards-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    
+}
+.gift-cards-content-left,
+.gift-cards-content-right{
+    width: 48%;
+    margin-top: 0;
+    padding-top: 2rem;
+}
+
+.gift-cards-content-left .gift-cards-img-container{
+    width: 100%;
+    height: 350px;
+    background-color: #fff;
+    /* 阴影 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.8rem;
+}
+.gift-cards-content-left .gift-cards-img-container img{
+    width: 70%;
+    height: 70%;
+    object-fit:cover;
+    display:inline-block;
+    /* background-color: #242424; */
+    /* border: 4px solid  #692b64;    */
+    border-radius: 7px;
+}
+
+.gift-cards-content-left .gift-cards-selection-container{
+    padding: 2rem;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-quantity-selection>p , 
+.card-amount-selection>p,
+.gift-cards-details>p{
+    font-size: 1.15rem;
+    color:#125430;
+    line-height: 1.28571;
+    margin-bottom: 0;
+    font-weight: 300 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: .5rem;
+    padding: 1rem 0;
+}
+.card-quantity-selection .card-quantity-info{
+    display: flex;
+    justify-content: start;
+    /* gap: 5rem; */
+    align-items: center;
+    margin-bottom: 2rem;
+
+}
+.card-quantity-selection .card-quantity-info>p{
+    width:80%;
+    font-size: .9rem;
+    /* line-height: 1.28571; */
+    font-weight: 300 !important;
+    color: #242424;
+   
+}
+
+.card-amount-selection .card-button-group{
+    display: flex;
+    align-items: center;
+    padding: 5px 8px;
+    border: 1px solid #e8e8e8;
+    border-radius: 28px;
+    
+}
+.card-button-group button {
+    width:25%;
+    background-color: #fff;
+    font-size: 1.25rem;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+}
+.card-button-group button.active {
+    background: #125430;
+    color: #fff;
+    opacity: 100;
+}
+.collapsible .collapsible-header {
+    display: flex;
+    color:  #692b64;  
+    justify-content: start;
+    align-items: center;
+    padding: 1rem 0;
+    
+    cursor: pointer;
+    border-bottom:1px solid #242424;
+}
+
+.collapsible-header h2{
+    font-size: .9rem;
+    /* color:  #692b64;   */
+    /* line-height: 1.28571; */
+    margin-bottom: 0;
+    margin-right:1rem;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+    /* letter-spacing: 0.1em; */
+    cursor: pointer;
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+   
+    transition: max-height 0.3s ease-in-out; 
+}
+
+.collapsible-content>div{
+
+    padding: 1rem;
+    
+    background-color: #F6F6F5;
+
+}
+
+.collapsible-arrow {
+   
+    display: inline-block; 
+    color:#125430;;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.collapsible-content.show {
+    max-height: 500px; 
+}
+
+.collapsible-header.active .collapsible-arrow {
+    transform: rotate(180deg); 
+}
+
+.gift-cards-content-right>.gift-cards-payment{
+    width: 100%;
+   margin-top: 2rem;
+   margin-bottom: 2rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+.order-gift-card-submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.order-gift-card-submit button{
+    width:100%;
+}
+
+
+
+/* customer view gift cards */

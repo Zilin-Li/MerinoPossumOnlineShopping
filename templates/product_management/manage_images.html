@@ -1,0 +1,46 @@
+{% extends 'components/base.html' %}
+{% block content %}
+<h1>Manage Product Images</h1>
+<form method="post">
+    <div class="form-group">
+        <label for="image_url">Image URL</label>
+        <input type="text" class="form-control" id="image_url" name="image_url" required>
+    </div>
+    <div class="form-group">
+        <label for="image_type">Image Type</label>
+        <select class="form-control" id="image_type" name="image_type" required>
+            {% for image_type in image_types %}
+            <option value="{{ image_type.id }}">{{ image_type.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="color">Color</label>
+        <select class="form-control" id="color" name="color" required>
+            {% for color in colors %}
+            <option value="{{ color.id }}">{{ color.color_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description">Image Description</label>
+        <input type="text" class="form-control" id="description" name="description">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Image</button>
+</form>
+<hr>
+<h2>Existing Images</h2>
+<div class="row">
+    {% for image in product_images %}
+    <div class="col-md-4 mb-3">
+        <img src="{{ image.image_url }}" class="img-fluid" alt="Product Image">
+        <p>Type: {{ image.image_type_name }}</p>
+        <p>Color: {{ image.color_name }}</p>
+        <p>{{ image.description }}</p>
+        <form action="{{ url_for('product_management.delete_product_image_view', product_id=product_id, image_id=image.id) }}" method="post">
+            <button type="submit" class="btn btn-sm btn-danger mt-2">Delete</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

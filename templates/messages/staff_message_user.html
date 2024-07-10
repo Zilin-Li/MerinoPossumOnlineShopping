@@ -1,0 +1,70 @@
+{% extends 'components/base.html' %}
+{% block title %}Message{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="staff-message-user">
+  <div class="staff-message-user-container">
+  <h2 class="text-center mb-4">Message List</h2>
+
+  <!-- Filter buttons -->
+  <div class="d-flex justify-content-center mb-4">
+    <button class="btn btn-primary me-2" onclick="filterMessages('all')">All</button>
+    <button class="btn  btn-danger me-2" onclick="filterMessages('unread')">Unread</button>
+    <button class="btn btn-success" onclick="filterMessages('read')">Read</button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Message ID</th>
+          <th scope="col">Send Time</th>
+          <th scope="col">Is Read</th>
+          <th scope="col">Message Type</th>
+          <th scope="col">Sender Name</th>
+          <th scope="col">Receiver Name</th>
+          <th scope="col">View Content</th>
+        </tr>
+      </thead>
+      <tbody id="messageTable">
+        {% for message in messages %}
+        <tr class="{{ 'table-secondary' if message[3] else '' }} message-row"
+          data-is-read="{{ 'true' if message[3] else 'false' }}">
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ message[0] }}</td>
+          <td>{{ message[2] }}</td>
+          <td class="{{'bg-success' if message[3] else 'bg-danger' }}">{{ 'Yes' if message[3] else 'No' }}</td>
+          <td>{{ message[6] }}</td>
+          <td>{{ message[4] }}</td>
+          <td>{{ message[5] }}</td>
+          <td>
+            <a href="{{ url_for('staff_message_user.get_message_content_details', message_id=message[0]) }}"
+              class="btn btn-custom"><i class="bi bi-eye-fill"></i> Details</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+</div>
+
+<script>
+  function filterMessages(filter) {
+    var rows = document.querySelectorAll('.message-row');
+    rows.forEach(row => {
+      if (filter === 'all') {
+        row.style.display = '';
+      } else if (filter === 'unread' && row.dataset.isRead === 'false') {
+        row.style.display = '';
+      } else if (filter === 'read' && row.dataset.isRead === 'true') {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+</script>
+{% endblock %}

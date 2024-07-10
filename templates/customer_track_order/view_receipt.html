@@ -1,0 +1,29 @@
+{% extends 'components/base.html' %}
+{% block title %}View Receipt{% endblock %}
+{% block content %}
+
+
+<div class="min-vh-100 d-flex justify-content-center" style="background: linear-gradient(135deg, #af69b7 0%, #d294ce 100%);padding-top:3%; margin-top:0">
+
+  <div style="width: 100%; max-width: 60vw;">
+    <div class="container my-4 py-3" style="background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+      <h3 class="text-center mb-4">Your Receipt</h3>
+      <div class="card mb-5">
+        <div class="card-body">
+          <p class="card-text" style="font-size: 17px;"><strong>Total Price including GST:</strong> {{ receipt[0] }} NZD</p>
+          <p class="card-text" style="font-size: 17px;"><strong>Shipping Fee:</strong> {{ receipt[1] }} NZD</p>
+          <p class="card-text" style="font-size: 17px;"><strong>Total Cost:</strong> {{ receipt[2] }} NZD</p>
+          <p class="card-text" style="font-size: 17px;"><strong>Payment Date:</strong> {{ receipt[3] }}</p>
+          <p class="card-text" style="font-size: 17px;"><strong>Payment Type:</strong> {{ receipt[4] }}</p>
+          
+          <div class="d-flex justify-content-between mt-4">
+            <a href="{{ url_for('customer_track_order.list_order') }}" class="btn btn-secondary" style="min-width: 120px;font-size: 17px;">Back</a>
+          </div>
+        </div>
+      </div>      
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

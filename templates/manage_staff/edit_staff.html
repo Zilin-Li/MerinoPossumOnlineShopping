@@ -1,0 +1,88 @@
+{% extends 'components/base.html' %}
+{% block title %}Edit Staff Details{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white" >
+                    <h4>Edit Staff Details</h4>
+                </div>
+                <div class="card-body my-3" >
+                    <form method="POST" action="{{ url_for('manage_staff.edit_staff', staff_id=staff_detail[0]) }}">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="username" class="form-label"><strong>Username</strong></label>
+                                <input type="text" class="form-control" id="username" value="{{ staff_detail[1] }}" disabled>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="is_active" class="form-label"><strong>Status</strong></label>
+                                <select class="form-select" id="is_active" name="is_active">
+                                    <option value="1" {% if staff_detail[11] == 1 %}selected{% endif %}>Active</option>
+                                    <option value="0" {% if staff_detail[11] != 1 %}selected{% endif %}>Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="first_name" class="form-label"><strong>First Name</strong></label>
+                                <input type="text" class="form-control" id="first_name" name="first_name"
+                                    value="{{ staff_detail[3] |default('', true) }}" maxlength="50" pattern="[A-Za-z]+">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="last_name" class="form-label"><strong>Last Name</strong></label>
+                                <input type="text" class="form-control" id="last_name" name="last_name"
+                                    value="{{ staff_detail[4] |default('', true) }}" maxlength="50" pattern="[A-Za-z]+">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label"><strong>Email:</strong></label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    value="{{ staff_detail[2] |default('', true)}}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label"><strong>Phone</strong></label>
+                                <input type="text" class="form-control" id="phone" name="phone"
+                                    value="{{ staff_detail[5] |default('', true) }}"  maxlength="20" >
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="street_address" class="form-label"><strong>Address</strong></label>
+                                    <input type="text" class="form-control" id="street_address" name="street_address"
+                                        value="{{ staff_detail[6] |default('', true) }}">
+                            </div>    
+                            <div class="col-md-6 mb-3">
+                                <label for="city" class="form-label"><strong>City</strong></label>
+                                <input type="text" class="form-control" id="city" name="city"
+                                    value="{{ staff_detail[7] |default('', true) }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="state" class="form-label"><strong>State</strong></label>
+                                <input type="text" class="form-control" id="state" name="state"
+                                    value="{{ staff_detail[8] |default('', true) }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="country" class="form-label"><strong>Country</strong></label>
+                                <input type="text" class="form-control" id="country" name="country"
+                                    value="{{ staff_detail[9] |default('', true) }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="post_code" class="form-label"><strong>Post Code</strong></label>
+                                <input type="text" class="form-control" id="post_code" name="post_code"
+                                    value="{{ staff_detail[10] |default('', true) }}">
+                            </div>
+                            
+                        </div>
+
+                        <div class="mb-4 d-flex justify-content-between">
+                            <a href="{{ url_for('manage_staff.display_all_staff') }}"
+                                class="btn btn-secondary my-3 "><strong>← Back to List</strong></a>
+                            <button type="submit" class="btn btn-success my-3"><strong>Update Details</strong>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

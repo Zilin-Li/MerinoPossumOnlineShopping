@@ -1,0 +1,53 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+{% extends 'components/base.html' %}
+{% block title %} Customer Demographics Report {% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center pt-5 pb-5"> 
+    <canvas id="myChart" style="width:100%; max-width:1000px; overflow: hidden;"></canvas>
+</div>
+
+
+<script>
+    var country_array = [
+            {% for item in country %}
+                "{{ item }}"{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+    var population_array = [
+            {% for item in population %}
+                "{{ item }}"{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+    
+    const barColors = [
+      "#b91d47",
+      "#00aba9",
+      "#2b5797",
+      "#e8c3b9",
+      "#1e7145"
+    ];
+    
+    new Chart("myChart", {
+      type: "pie",
+      data: {
+        labels: country_array,
+        datasets: [{
+          backgroundColor: barColors,
+          data: population_array
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Customer Demographics Report",
+          fontSize: 24
+        },
+        legend: {display: true,
+                 labels: { fontSize: 15 }
+        }
+      }
+    });
+    </script>
+{% endblock %}

@@ -1,0 +1,301 @@
+.checkout{
+    width: 100%;
+    min-height: 70vh;
+    /* max-width: 90rem; */
+    min-width: 80rem;
+    padding:3rem 0;
+}
+.checkout-content{
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: flex-start; */
+}
+.checkout-content .header-title,
+.review-order>p{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #692b64;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+
+}
+.checkout-content .checkout-content-left{
+    width: 60%;
+    /* background-color: pink; */
+}
+.checkout-content-left .delivery-options{
+    display:flex;
+    flex-direction: column ;
+    
+    width:100%;
+}
+.checkout-content-left .delivery-options label {
+    padding-left: 2rem;
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    line-height: 50px;
+    transition: all 0.3s;
+}
+.form-label.selected {
+    background-color: #692b64;
+    color: white; 
+}
+
+.checkout-form .delivery-infomations{
+    margin-top: 2rem;
+    border: none;
+    padding: 1rem 2rem 2rem 2rem;
+    /* 阴影 */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.checkout-form .delivery-infomations .delivery-row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.checkout-form .delivery-infomations .delivery-row > div{
+    width: 48%;
+}
+.checkout-form .delivery-infomations p{
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #692b64;
+    margin: 2rem 0;
+}
+
+.checkout-form .delivery-infomations .street,
+.checkout-form .delivery-infomations .phone{
+    width: 100%;
+   margin-bottom: 1rem;
+}
+.payment-method {
+    /* border: 1px solid green;
+    border-radius: 5px;
+    padding: 1rem 2rem 2rem 2rem; */
+    margin-top:1rem;
+}
+
+.payment-method >p{
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #692b64;
+    margin:  0.5rem 0;
+}
+
+.payment-method .container{
+    margin: 0;
+   padding: 0;
+}
+.payment-method .form-group{
+    margin: 2rem 0;
+}
+.payment-method .card-body,
+.payment-method .card-header{
+    padding:.5rem 2rem
+}
+
+.payment-method .card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    
+    letter-spacing: 1px;
+    background-color: #692b64;
+    color: #fff;
+}
+.payment-method .card-body .form-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+.checkout-button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.checkout-button button{
+    width:100%;
+    
+    font-size: 1.2rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+}
+
+/* .checkout-button button:hover{
+    background-color: #fff;
+    color: #692b64;
+    border: 1px solid #692b64;
+} */
+
+
+.checkout-content .checkout-content-right{
+    width: 35%;
+   border:1px solid rgba(93, 93, 93, 0.7);
+    border-radius: 5px;
+    padding: 1rem 2rem 2rem 2rem;
+}
+.review-order-items th {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1rem 0;
+    vertical-align: middle; 
+}
+
+.review-order-items .check-product-group{
+    width: 50%; 
+}
+.review-order-items .check-invoice-group{
+    width: 25%; 
+}
+.review-content{
+    font-size: 0.75rem;
+}
+
+.review-order-items .product-group-td {
+    display: flex;
+    align-items: center; 
+    padding: 0.5rem 0; 
+}
+
+.product-group-td .review-img {
+    width: 80px;
+    height: 80px;
+    margin-right: 1rem; 
+}
+
+.product-group-td .review-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.product-group-td .review-product-detail {
+    flex-grow: 1; 
+    font-size: 0.75rem; 
+}
+.product-group-td .review-product-detail p{
+    padding:  0;
+}
+.review-content .order-quantity,
+.review-content .order-subtotal{
+    text-align: center  ;
+}
+
+.cart_total_calculate {
+    width: 100%;
+    font-size: 14px;
+    line-height: 2.285714286;
+    font-weight: 500;
+    border: none;
+    padding: 1rem 2rem 2rem 2rem;
+    transition: all 0.3s;
+    background-color:#F6F6F5;
+}
+.cart_total_calculate .order-price-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-top: 1rem; */
+}
+.cart_total_calculate .total-group{
+    display: flex;
+    justify-content: space-between;
+    height: 16px;
+    /* margin-top: 1rem; */
+}
+.cart_total_calculate .order-gst{
+    color: #999;
+    font-size: 12px;
+}
+.cart_total_calculate .dark{
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600 ;
+}
+
+.gift-card-application{
+    margin:2rem 0; 
+}
+
+.gift-card-application label{
+    font-size:  1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-right: 1rem;
+
+    
+}
+.gift-card-application div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.gift-card-application input{
+    width: 70%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    transition: all 0.3s;
+}
+
+.gift-card-application button{
+    width: 25%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #692b64;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.gift-card-application button:hover{
+    background-color: #fff;
+    color: #692b64;
+    border: 1px solid #692b64;
+}
+
+
+.custom-select-style {
+    border: 2px solid #0056b3; 
+    background-color: #e9ecef; 
+    color: #495057; 
+    padding: 0.5rem 0.75rem; 
+    border-radius: 0.25rem; 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); 
+}
+.custom-select-style:focus {
+    border-color: #004085; 
+    box-shadow: 0 0 0 0.2rem rgba(0, 38, 123, 0.25); 
+}

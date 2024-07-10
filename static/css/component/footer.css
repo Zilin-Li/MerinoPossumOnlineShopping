@@ -1,0 +1,83 @@
+.site-footer {
+    background-color: #505050; /* Dark gray background */
+    color: white; /* White text color for contrast */
+    padding: 20px;
+    width: 100%; 
+    min-width: 80rem;
+   
+    /* max-width: 90rem; */
+}
+.footer-container{
+    width: 100%;
+    min-width: 80rem;
+    max-width: 90rem;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    min-width: 80rem;
+   
+}
+
+.footer-section h4 {
+    margin-top: 0;
+}
+
+.footer-section p, .footer-section ul {
+    font-size: 0.85rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li a {
+    color: #c1c1c1; /* Lighter gray for links for better readability */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.footer-section .footer-media-link{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+.footer-section ul li a:hover {
+    color: #ffffff; /* White color on hover for interaction feedback */
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #686868; /* Slightly lighter gray border */
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.footer-bottom p {
+    font-size: 0.8rem;
+}
+
+.contact-info, .location, .company-profile {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h2, .location h2, .company-profile h2 {
+    color: #333;
+}
+
+.contact-info p, .company-profile p {
+    line-height: 1.6;
+}
+
+.img-fluid {
+    max-height: 300px;
+    object-fit: cover;
+}

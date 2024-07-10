@@ -1,0 +1,119 @@
+{% extends 'components/base.html' %}
+{% block title %}{{ product_detail.product_info[1] }}{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<section class="product-detail-container">
+
+    <div class="detail-left-container">
+
+        <div class="product-main-image">
+
+            <img id="product-img-display"
+                src="{{ 'https://raw.githubusercontent.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_AK_IMGS/main/' + product_detail.main_image }}"
+                alt="Main Image">
+        </div>
+    </div>
+    <div class="detail-right-container">
+        <!-- product name -->
+        <p class="product-name">{{ product_detail.product_info[1] }}</p>
+
+        <!-- Product brand -->
+        <p class="brand-name">Brand: {{ product_detail.product_info[3] }}</p>
+        {% if session.logged_in and  session.role_id == 2  %}
+        <!-- Display the original price with a line-through to indicate a discount -->
+        <p class="product-price">
+            <span class="price-original text-decoration-line-through text-muted me-2" style="font-size: 0.9em;">
+                <span class="price__currency">NZD</span> ${{ product_detail.base_price }}
+            </span>
+            <!-- Display the discounted price with emphasis -->
+            <span class="price-discounted text-danger fw-bold" style="font-size: 1.1em;">
+                <span class="price__currency">NZD</span> ${{ product_detail.discounted_price }}
+            </span>
+        </p>
+        {% elif product_detail.discounted_price != product_detail.base_price %}
+        <p class="product-price">
+            <span class="price-original text-decoration-line-through text-muted me-2" style="font-size: 0.9em;">
+                <span class="price__currency">NZD</span> ${{ product_detail.base_price }}
+            </span>
+            <!-- Display the discounted price with emphasis -->
+            <span class="price-discounted text-danger fw-bold" style="font-size: 1.1em;">
+                <span class="price__currency">NZD</span> ${{ product_detail.discounted_price }}
+            </span>
+        </p>
+        {% else %}
+        <!-- Display the regular price for users who do not get a discount -->
+        <p class="product-price">
+            <span class="price__currency">NZD</span> ${{ product_detail.base_price }}
+        </p>
+        {% endif %}
+
+        <form class="select-product-form" method="POST" action="{{ url_for('categories.add_item_to_cart') }}"
+            enctype="multipart/form-data">
+            <!-- hidden input use to pass data -->
+            <input type="hidden" name="product_id" value="{{ product_detail.product_info[0] }}">
+            {% if session.logged_in and product_detail.discounted_price != product_detail.base_price %}
+
+            <input type="hidden" name="product_price" value="{{  product_detail.discounted_price }}">
+            {% else %}
+            <input type="hidden" name="product_price" value="{{  product_detail.base_price }}">
+            {% endif %}
+            <!--  -->
+            <!-- Color Selection -->
+            <div class="product-color-display">
+                <p class="product-color-name">Color: <span id="current-product-color">{{ color_name }}</span></p>
+                <div class="product-color-images" id="product-color-image">
+                    {% for image, color_id, color_name in product_detail.color_images %}
+                    <label class="each-color-group" onclick="selectProductColor('{{ color_name }}', '{{image}}',this);">
+                        <input type="radio" name="select_color" value="{{ color_id }}" style="display: none;">
+                        <img src="{{ 'https://raw.githubusercontent.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_AK_IMGS/main/'  + image }}"
+                            alt="{{ color_name }} Color Image">
+
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="size-quantity-row row">
+                <!-- Size Selector -->
+                <div class="col-md-7">
+                    <div class="product-size-list form-group">
+                        <label for="sizes-dropdown" class="product-size-name form-label">Size:</label>
+                        <select name="select_size" id="sizes-dropdown" class="sizes-dropdown form-select">
+                            {% for size, size_id in product_detail.sizes %}
+                            <option value="{{ size_id }}">{{ size }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Quantity Selector -->
+                {% if session.logged_in == True and session.role_id == 1 %}
+                <div class="col-md-5">
+                    <div class="quantity-selector form-group">
+                        <label for="quantity" class="quantity-select form-label">Quantity:</label>
+                        <input class="quantity-selector-input form-control" type="number" id="quantity" name="quantity"
+                            min="1" max="9999" value="1" step="1">
+                    </div>
+                </div>
+                {% elif session.logged_in == True and session.role_id == 2 %}
+                <div class="col-md-5">
+                    <div class="quantity-selector form-group">
+                        <label for="quantity" class="quantity-select form-label">Quantity:</label>
+                        <input class="quantity-selector-input form-control" type="number" id="quantity" name="quantity"
+                            min="10" max="9999" value="10" step="10">
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn">ADD TO CART</button>
+        </form>
+        <!-- product description -->
+        <div class="product-description">
+            <p class="product-description-title">Description</p>
+            <p class="product-description-content">{{ product_detail.product_info[4] }}</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

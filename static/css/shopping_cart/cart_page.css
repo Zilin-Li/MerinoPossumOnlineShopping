@@ -1,0 +1,217 @@
+.customer-shopping-cart{
+    width: 100%;
+    min-height: 70vh;
+    /* max-width: 90rem; */
+    min-width: 80rem;
+    padding:3rem 0;
+    /* background-color:pink; */
+
+}
+ .shopping-cart-container{
+    width: 80%;
+    margin: 0 auto;
+ }
+
+ .shopping-cart-content .empty-cart{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 0 0 2rem 0;
+    color: #692b64;
+}
+
+.shopping-cart-content .empty-cart a{
+    display: block;
+    width: 50%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s; 
+    margin: 4rem auto;
+}
+.shopping-cart-content .empty-cart a:hover{
+    background-color: black;
+    color: white;
+}
+ .shopping-cart-content tbody{
+    font-size: 0.9rem;
+ }
+.shopping-cart-header .cart-title{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 0 0 2rem 0;
+    color: #692b64;
+
+}
+.shopping-cart-header .point-notification{
+    font-size: .9rem;
+    font-weight: 100 !important;
+    letter-spacing: 0.06em;
+    margin: 0 0 2rem 0;
+    padding:1rem;
+    border: 1px solid #999;
+}
+.shopping-cart-header .point-notification i{
+    color: #692b64;
+    margin: 0 2rem;
+
+}
+.shopping-cart-header .point-notification span{ 
+    font-size: .95rem;
+    color: #692b64;
+    font-weight: 500 !important;
+
+}
+.shopping-cart-content{
+    margin-top: 3rem;
+    text-align: center  ;
+} 
+
+
+.item-name-img-group{
+    width: 58%;
+
+    /* background-color: pink; */
+}
+.item-other-group{
+    width: 1fr;
+    /* background-color: pink; */
+
+}
+.item-action-group{
+    width: 5%;
+    /* background-color: pink; */
+
+}
+
+.item-name-img{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 1rem;
+    /* padding: .9rem; */
+  
+}
+.cart-img-container{
+    width:30%;
+    /* margin-left:3rem; */
+}
+.cart-img-container img{
+    width: 100%;
+    height: 100%;
+    max-width: 80px;
+    /* height: auto; */
+    object-fit:cover;
+}
+.cart-item-name .cart-item-size, .cart-item-name .cart-item-color{
+    font-size: .8rem;
+    font-weight: 500;
+    color: #692b64;
+    margin: 0.5rem 0;
+    text-align: start;
+}
+
+
+.cart-input-group {
+    display: flex;
+    width: 80%;
+    border: 1px solid #999;
+    align-items: center;
+    margin:0 auto;
+}
+
+.cart-input-group input[type="number"] {
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #692b64;
+  
+}   
+.cart-input-group input[type="number"]:focus {
+    outline: none;
+}
+.input-group-prepend, .input-group-append {
+   height: 100%;
+
+}
+.cart-input-group button {
+    /* height: 100%; */
+    width: 2.5rem;
+    background-color: #692b64;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background-color 0.3s;
+}
+.cart-input-group button:hover {
+    background-color: #B674B1;
+}
+.cart-input-group input[type="number"]::-webkit-inner-spin-button,
+.cart-input-group input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cart-input-group input[type="number"] {
+  -moz-appearance: textfield;
+}
+.cart-input-group input[type="number"]::-ms-clear,
+.cart-input-group input[type="number"]::-ms-reveal {
+  display: none;
+}
+
+.shopping-cart-content .cart-item-submit-button{
+    display: flex;
+    justify-content: end;
+    /* margin-top: 2rem; */
+}
+
+.shopping-cart-content .cart-item-submit-button button{
+    background-color: #692b64;
+    color: white;
+    width: 18rem;
+    border: none;
+    border-radius: 5px;
+    margin-left: 6rem;
+   
+    padding: .5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s;  
+}
+.shopping-cart-content .cart-item-submit-button button:hover{
+    background-color: #B674B1;
+}
+.shopping-cart-content .cart-item-submit-button a{
+    display: block;
+    width: 50%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s; 
+
+}
+.shopping-cart-content .cart-item-submit-button a:hover{
+    background-color: black;
+    color: white;
+}
+.cart-item-total-price span{
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #692b64;
+    margin: 2rem 0;
+}

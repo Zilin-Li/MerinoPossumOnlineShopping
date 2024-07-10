@@ -1,0 +1,90 @@
+{% extends 'components/base.html' %}
+{% block title %}{{ new_category_name }}{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<section class="category-products-container">
+  <div class="category-products">
+    <div class="category-products-header">
+      <p class="category-name">{{ new_category_name }}</p>
+    </div>
+    <div class="container category-search-tools">
+      <div class="row">
+        <!-- Left Placeholder (Sort Variants) -->
+        <div class="col-md-2 d-flex align-items-center justify-content-start">
+          <div class="sort-by-variants">
+            <!-- Additional content or placeholder can go here -->
+          </div>
+        </div>
+    
+        <!-- Center: Product Count, occupies remaining space -->
+        <div class="col-md text-center d-flex align-items-center justify-content-center">
+          <p class="category-products-count m-0">Showing {{ products|length }} products</p>
+        </div>
+    
+        <!-- Right: Sort Form, fixed width -->
+        <div class="col-md-3">
+          <form class="category-products-sort-form" method="GET" action="{{ url_for('categories.display_products', category_name=new_category_name, category_id=category_id) }}" style="width: 100%;">
+            <div class="d-flex justify-content-start align-items-center">
+              <label for="sort-select" class="sort-label me-2">Sort by:</label>
+              <select name="sort_by" id="sort-select" class="form-control" onchange="this.form.submit()">
+                <option value="price_low_to_high" {% if sort_by == 'price_low_to_high' %} selected {% endif %}>Price: Low to High</option>
+                <option value="price_high_to_low" {% if sort_by == 'price_high_to_low' %} selected {% endif %}>Price: High to Low</option>
+                <option value="availability" {% if sort_by == 'availability' %} selected {% endif %}>Availability</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>    
+
+    <div class="category-products-list">
+      {% for product in products %}
+       <div class="product-group">
+        <div class="product-image">
+          <a href="{{ url_for('categories.display_product_detail', product_id=product['product_id']) }}"
+            class="product-grid-image adaptive_height">
+
+              <img alt="{{ product['product_description'] }}" class="lazyautosizes ls-is-cached lazyloaded"
+              data-aspectratio="0.72109375" data-sizes="auto" sizes="268px"
+              src="{{'https://raw.githubusercontent.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_AK_IMGS/main/' + product['image_url']}}">
+          </a>
+            {% if product['total_stock_quantity'] == 0 %}
+            <div class="product-label">
+              <span class="sold-out">Sold Out</span>
+            </div>
+            {% endif %}
+        </div>
+        <div class="product-info">
+          {% if product['total_stock_quantity'] == 0 %}
+          <span class="product-name" style="color: grey; cursor: not-allowed;">{{ product['product_name'] }}</span>
+          {% else %}
+          <a href="{{ url_for('categories.display_product_detail', product_id=product['product_id']) }}"
+            class="product-name">{{ product['product_name'] }}</a>
+          {% endif %}
+        </div>
+           
+        <div class="price-box">
+          <div class="price-regular">
+           
+           
+            {% if session.logged_in and session.role_id == 2 %}
+              <span class="price-original text-decoration-line-through text-muted me-2">NZD ${{ product['base_price'] }}</span>
+              <span class="price-discounted text-danger fw-bold">NZD ${{ product['discounted_price'] }}</span>
+            {% elif product['discounted_price'] != product['base_price'] %}
+              <span class="price-original text-decoration-line-through text-muted me-2">NZD ${{ product['base_price'] }}</span>
+              <span class="price-discounted text-danger fw-bold">NZD ${{ product['discounted_price'] }}</span>
+            {% else %}
+              <span>NZD ${{ product['base_price'] }}</span>
+            {% endif %}
+          </div>
+        </div>
+
+       </div>    
+      {% endfor %}
+    </div>
+
+  </div>
+
+
+</section>
+{% endblock %}

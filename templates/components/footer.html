@@ -1,0 +1,41 @@
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Need Help?</h4>
+                <ul>
+                    <li><a href="{{ url_for('footer_info.returns_policy') }}">Returns and Exchanges Policy</a></li>
+                    <li><a href="{{ url_for('footer_info.delivery_info') }}">Delivery and Shipping</a></li>
+                    <li><a href="{{ url_for('footer_info.clothing_size') }}">Colthing Size Guide</a></li>
+                
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="{{ url_for('footer_info.contact_info') }}">About Us</a></li>
+                    <li><a href="{{ url_for('footer_info.contact_info') }}">Contact Us</a></li>
+                    <li><a href="{{ url_for('footer_info.contact_info') }}">Privacy Policy</a></li>
+                    <li><a href="{{ url_for('footer_info.contact_info') }}">Terms and Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <p>Stay connected with us through our social media channels:</p>
+                <ul class="footer-media-link">
+                    <li><a href="https://www.facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                    <li><a href="https://www.twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                </ul>
+                <br>
+                {% if session.logged_in != True %}
+                <a href="{{ url_for('users.corporate_client_register') }}" class="btn btn-custom" style="min-width: 120px;font-size: 17px;">Corporate Client Register</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>© 2024 Belmont Station Merino & Possum. All rights reserved.</p>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,44 @@
+{% extends 'components/base.html' %}
+{% block title %}Category Promotions{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="container mt-4">
+  <h1 class="mb-4">Categories</h1>
+  <form method="POST">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Category Name</th>
+            <th>Description</th>
+            <th>Promotion</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for category in categories %}
+          <tr>
+            <td>{{ category[0] }}</td>
+            <td>{{ category[1] }}</td>
+            <td>{{ category[2] }}</td>
+            <td>
+              <select class="form-select" name="promotion_{{ category[0] }}">
+                <option value="">Select a promotion</option>
+                {% for promotion in promotions %}
+                <option value="{{ promotion[0] }}">{{ promotion[1] }}</option>
+                {% endfor %}
+              </select>
+            </td>
+            <td>
+              <button type="submit" class="btn btn-primary" name="update_category"
+                value="{{ category[0] }}">Update</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+{% endblock %}

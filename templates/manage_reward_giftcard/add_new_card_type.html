@@ -1,0 +1,55 @@
+{% extends 'components/base.html' %}
+{% block title %}Add Card Type {% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<section class="manage_reward_giftcard">
+    <div class="manage_reward_giftcard-container">
+        <div class="manage_reward_giftcard-header">
+            <h1>Add Gift Card Type</h1>
+        </div>
+
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="POST" action="{{ url_for('manage_gift_cards.add_card_type_submit') }}" enctype="multipart/form-data">
+                        <div class="row g-3">
+                            <div class="col-md-6 mb-3">
+                                <label for="card_type_name" class="form-label">
+                                    <strong>Type Name</strong>
+                                    <span style="color: red"> * </span>
+                                </label>
+                                <input type="text" class="form-control" id="card_type_name" name="card_type_name" value="" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="card_value" class="form-label"><strong>Card Value</strong><span style="color: red"> * </span></label>
+                                <input type="number" class="form-control" id="card_value" name="card_value" value="5.00" min="5.00" step="5.00">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="redeem_points" class="form-label"><strong>Redeem Points</strong><span style="color: red"> * </span></label>
+                                <input type="number" class="form-control" id="redeem_points" name="redeem_points" min="50" value="50" step="50" required> 
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="status" class="form-label"><strong>Status</strong><span style="color: red"> * </span></label>
+                                <select class="form-select" id="status" name="status">
+                                    <option value="1" selected>Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="card_description" class="form-label"><strong>Card Description</strong></label>
+                                <textarea class="form-control" id="card_description" name="card_description" rows="4"
+                                style="min-height: 100px; overflow-y: auto;"></textarea>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between my-3">
+                            <a href="{{ url_for('manage_gift_cards.display_gift_card_types') }}" class="btn btn-primary"><strong>← Back to List</strong></a>
+                            <button type="submit" class="btn btn-success"><strong>ADD CARD TYPE</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+</section>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'components/base.html' %}
+
+{% block title %}
+Credit Information
+{% endblock %}
+
+{% block styles %}
+<link href="{{ url_for('static', filename='css/corporate_client_credit/credit_info.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container-credit-info mt-5 mb-5">
+    <div class="credit-info-card-container shadow-lg">
+        <div class="credit-modal-header-container">
+            Credit Information
+        </div>
+        <div class="credit-info-card-body card-body ">
+            <div class="p-4">
+                <p class="credit-info-card-text">* Please check your credit.</p>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="credit-info-details">
+                            <h6><i class="fas fa-credit-card"></i> Credit Limit:</h6>
+                            <p class="credit-limit-value">{{ credit_info.credit_limit }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="credit-info-details">
+                            <h6><i class="fas fa-wallet"></i> Available Credit:</h6>
+                            <p class="available-credit-value">{{ credit_info.available_credit }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+           
+            <hr>
+            <div class="text-center-credit-info mt-4-credit-info">
+                <a href="{{ url_for('corporate_client_credit.credit_limit_increase_form', user_id=user_id) }}" class="btn btn-primary-credit-info">Apply for Credit Limit Increase</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

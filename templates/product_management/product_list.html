@@ -1,0 +1,375 @@
+{% extends 'components/base.html' %}
+{% block title %}Product List{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<section class="manager-product-list">
+
+    <div class="product-list-container">
+        <div class="product-list-header">
+            <P class="text-uppercase product-title">Product List</P>
+        </div>
+
+        <div>
+            <a href="{{ url_for('product_management.add_product_view') }}">
+                <svg width="60px" height="60px" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" fill-rule="evenodd" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(4 4)">
+                        <path d="m12.5 10.5v-8c0-1.1045695-.8954305-2-2-2h-8c-1.1045695 0-2 .8954305-2 2v8c0 1.1045695.8954305 2 2 2h8c1.1045695 0 2-.8954305 2-2z"/>
+                        <path d="m6.5 3.5v6.056"/>
+                        <path d="m6.5 3.5v6" transform="matrix(0 1 -1 0 13 0)"/>
+                    </g>
+                </svg> <span style="color: grey;">Add Product</span>
+            </a>
+        </div>
+
+        <div class="product-list-content">
+            <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr class="text-uppercase">
+                                <th class="item-name-img-group" scope="col">product information</th>
+                                <th class="item-other-group" scope="col">category</th>
+                                <th class="item-other-group" scope="col">price</th>
+                                <th class="item-other-group" scope="col">Total quantity</th>
+                                <th class="item-other-group" scope="col">status</th>
+                                <th class="item-action-group" scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                            <tr id="item-row-{{ loop.index0 }}">
+                                <td>
+                                    <div class="item-name-img">
+                                        <div class="product-img-container">
+                                            <img src="{{ 'https://raw.githubusercontent.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_AK_IMGS/main/' + product.image_url }}"
+                                                alt="product image">
+                                            
+                                        </div>
+                                        <div class="product-item-name">
+                                            <p>{{ product.product_name }}</p>
+                                            <div>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#addVariantModal{{ product.id }}">
+                                                    <svg width="30px" height="30px" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                                                        <g fill="none" fill-rule="evenodd" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(4 4)">
+                                                            <path d="m12.5 10.5v-8c0-1.1045695-.8954305-2-2-2h-8c-1.1045695 0-2 .8954305-2 2v8c0 1.1045695.8954305 2 2 2h8c1.1045695 0 2-.8954305 2-2z"/>
+                                                            <path d="m6.5 3.5v6.056"/>
+                                                            <path d="m6.5 3.5v6" transform="matrix(0 1 -1 0 13 0)"/>
+                                                        </g>
+                                                    </svg>
+                                                </a>
+
+                                                <div class="modal fade" id="addVariantModal{{ product.id }}"
+                                                    tabindex="-1"
+                                                    aria-labelledby="addVariantModalLabel{{ product.id }}"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog  modal-lg">
+                                                        <form method="POST" action="{{ url_for('product_management.add_product_variant') }}">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="addVariantModalLabel{{ product.id }}">Add variant</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p class="text-uppercase product-title mb-5">Add variant for product <span style="color: grey;">{{ product.product_name }}</span></p>
+                                                                    <input type="text" hidden name="product_id" id="product_id" value="{{ product.id }}" />
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-input">
+                                                                                <label for="color" class="form-label">Color</label>
+                                                                                <select name="color" id="color" class="sizes-dropdown form-select">
+                                                                                    {% for color in all_colors %}
+                                                                                    <option value="{{ color.id }}"
+                                                                                    >{{ color.name }}</option>
+                                                                                    {% endfor %}
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Product brand -->
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-input">
+                                                                                <label for="size" class="form-label">Size</label>
+                                                                                <select name="size" id="size" class="sizes-dropdown form-select">
+                                                                                    {% for size in all_sizes %}
+                                                                                    <option value="{{ size.id }}"
+                                                                                    >{{ size.name }}</option>
+                                                                                    {% endfor %}
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-input">
+                                                                                <label for="quantity" class="form-label">Quantity</label>
+                                                                                <input class="form-control" type="number" id="quantity" name="quantity" min="0" max="9999999" value="0" step="1" required>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                      
+                                                                        <div class="col-md-8">
+                                                                            <label for="variant_image_url" class="form-label">Variant Image Url</label>
+                                                                            <input type="text" class="form-control" name="variant_image_url" id="variant_image_url"  required/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="variant-img-container">
+                                                                            <img src="" style="display: none;" name="variant_image_preview" id="variant_image_preview" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Cancel</button>
+                                                                        <button type="submit" class="btn btn-info" >Confirm</button>
+                                                                </div>
+                                                            </div>
+                                                        </form> 
+                                                    </div>
+                                                </div>
+
+                                                {% for variant in product.variants %}
+                                                <p class="product-item-size">Colour: {{ variant.color_name }} ｜ Size: {{ variant.size_name }} ｜ Quantity {{ variant.stock_quantity }}
+                                                    &nbsp;<a href="#" data-bs-toggle="modal" data-bs-target="#editVariantModal{{ variant.product_id }}-{{ variant.id }}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" width="20px" height="16px" version="1.1" id="Layer_1" viewBox="0 0 502.001 502.001" xml:space="preserve">
+                                                            <g>
+                                                                <g>
+                                                                    <g>
+                                                                        <path d="M489.809,32.002l-19.797-19.798C462.142,4.333,451.679,0,440.551,0s-21.59,4.333-29.459,12.202l-14.99,14.99     l-1.959-1.959c-3.905-3.904-10.235-3.905-14.143,0L62.146,343.088l0.011,0.004c-0.911,0.91-1.658,1.992-2.169,3.215     l-29.102,69.719L0.782,488.148c-1.562,3.742-0.71,8.056,2.157,10.923c1.913,1.914,4.472,2.93,7.073,2.93     c1.297,0,2.605-0.252,3.851-0.772l72.123-30.105c0.002-0.001,0.004-0.002,0.005-0.003l69.712-29.099     c1.223-0.51,2.305-1.257,3.215-2.168l0.004,0.011L476.778,122.01c1.875-1.875,2.929-4.419,2.929-7.071     c0-2.652-1.054-5.196-2.929-7.071l-1.959-1.959l14.99-14.989C506.052,74.676,506.052,48.246,489.809,32.002z M28.611,473.399     L43.596,437.5l20.915,20.914L28.611,473.399z M84.466,450.085l-32.541-32.54l20.772-49.763l61.532,61.531L84.466,450.085z      M151.852,418.65L83.36,350.159l271.839-271.84l68.492,68.492L151.852,418.65z M437.834,132.669l-68.492-68.492l17.73-17.73     l68.492,68.492L437.834,132.669z M475.666,76.776L460.822,91.62l-50.431-50.432l14.844-14.844     c4.091-4.091,9.53-6.344,15.316-6.344s11.227,2.253,15.317,6.344l19.797,19.797C484.111,54.588,484.111,68.33,475.666,76.776z"/>
+                                                                        <path d="M255.258,199.397L110.627,344.029c-3.905,3.905-3.905,10.237,0,14.143c1.953,1.953,4.512,2.929,7.071,2.929     s5.118-0.977,7.071-2.929l144.632-144.633c3.905-3.905,3.905-10.237,0-14.142C265.495,195.492,259.165,195.492,255.258,199.397z"/>
+                                                                        <path d="M300.255,154.4l-18.213,18.213c-3.905,3.905-3.905,10.237,0,14.143c1.953,1.952,4.512,2.929,7.071,2.929     s5.118-0.977,7.071-2.929l18.213-18.213c3.906-3.905,3.906-10.237,0.001-14.143C310.492,150.496,304.162,150.496,300.255,154.4z"/>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </svg>
+                                                    </a>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#deleteVariantModal{{ variant.product_id }}-{{ variant.id }}">
+                                                        <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            title="Remove Long Sleeves Boat Neck Midi Dress"
+                                                            aria-label="Remove Long Sleeves Boat Neck Midi Dress"
+                                                            aria-describedby="icon-title-Trash" aria-labelledby="icon-title-Trash"
+                                                            titleid="icon-title-Trash">
+                                                            <title></title>
+                                                            <g id="Icon/Trash/24px" stroke="none" stroke-width="1" fill="none"
+                                                                fill-rule="evenodd">
+                                                                <path
+                                                                    d="M20.7769877,4.84298476 L20.7769877,6.26403271 L19.7603662,6.26403271 L19.7603662,18.5712635 C19.7603662,20.4645127 18.22599,22 16.3316297,22 L16.3316297,22 L7.76089952,22 C5.86765033,22 4.33327408,20.4645127 4.33327408,18.5712635 L4.33327408,18.5712635 L4.33327408,6.26403271 L3,6.26403271 L3,4.84298476 L20.7769877,4.84298476 Z M18.3393183,6.26514377 L5.75543309,6.26514377 L5.75543309,18.5712635 C5.75543309,19.6767699 6.65428203,20.577841 7.76089952,20.577841 L7.76089952,20.577841 L16.3316297,20.577841 C17.4382472,20.577841 18.3393183,19.6767699 18.3393183,18.5712635 L18.3393183,18.5712635 L18.3393183,6.26514377 Z M10.377561,8.57637438 L10.377561,17.5559753 L8.95651304,17.5559753 L8.95651304,8.57637438 L10.377561,8.57637438 Z M14.8218079,8.57637438 L14.8218079,17.5559753 L13.40076,17.5559753 L13.40076,8.57637438 L14.8218079,8.57637438 Z M15.2217901,2 L15.2217901,3.42104795 L8.55541976,3.42104795 L8.55541976,2 L15.2217901,2 Z"
+                                                                    id="Combined-Shape" fill="#253746"></path>
+                                                            </g>
+                                                        </svg>
+                                                    </a>
+                                                </p>    
+                                                <div class="modal fade" id="editVariantModal{{ product.id }}-{{ variant.id }}"
+                                                    tabindex="-1"
+                                                    aria-labelledby="editVariantModalLabel{{ product.id }}-{{ variant.id }}"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog  modal-lg">
+                                                        <form method="POST" action="{{ url_for('product_management.edit_product_variant') }}">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="editVariantModalLabel{{ product.id }}-{{ variant.id }}">Edit variant</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p class="text-uppercase product-title mb-5">Edit variant for product <span style="color: grey;">{{ product.product_name }}</span></p>
+                                                                    <input type="text" hidden name="product_id" id="product_id" value="{{ product.id }}" />
+                                                                    <input type="text" hidden name="variant_id" id="variant_id" value="{{ variant.id }}" />
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-input">
+                                                                                <label for="color" class="form-label">Color</label>
+                                                                                <select name="color" id="color" class="sizes-dropdown form-select" >
+                                                                                    {% for color in all_colors %}
+                                                                                    <option value="{{ color.id }}"
+                                                                                    {% if color.id == variant.color_id %}
+                                                                                    selected
+                                                                                    {% endif %}
+                                                                                    >{{ color.name }}</option>
+                                                                                    {% endfor %}
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Product brand -->
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-input">
+                                                                                <label for="size" class="form-label">Size</label>
+                                                                                <select name="size" id="size" class="sizes-dropdown form-select" >
+                                                                                    {% for size in all_sizes %}
+                                                                                    <option value="{{ size.id }}"
+                                                                                    {% if size.id == variant.size_id %}
+                                                                                    selected
+                                                                                    {% endif %}
+                                                                                    >{{ size.name }}</option>
+                                                                                    {% endfor %}
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-input">
+                                                                                <label for="quantity" class="form-label">Quantity</label>
+                                                                                <input class="form-control" type="number" id="quantity" name="quantity" min="0" max="9999999" value="{{ variant.stock_quantity }}" step="1" required>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                
+                                                                        <div class="col-md-8">
+                                                                            <label for="variant_image_url" class="form-label">Variant Image Url</label>
+                                                                            <input type="text" class="form-control" name="variant_image_url" id="variant_image_url" value="{{ 'https://raw.githubusercontent.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_AK_IMGS/main/' + variant.image_url }}" required/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="variant-img-container">
+                                                                            <img src="{{ 'https://raw.githubusercontent.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_AK_IMGS/main/' + variant.image_url }}" name="variant_image_preview" id="variant_image_preview" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Cancel</button>
+                                                                        <button type="submit" class="btn btn-info" >Confirm</button>
+                                                                </div>
+                                                            </div>
+                                                        </form> 
+                                                    </div>
+                                                </div>
+                                                    
+                                                <div class="modal fade" id="deleteVariantModal{{ product.id }}-{{ variant.id }}"
+                                                    tabindex="-1"
+                                                    aria-labelledby="deleteVariantModal{{ product.id }}-{{ variant.id }}"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title"
+                                                                    id="deleteVariantModal{{ product.id }}-{{ variant.id }}">Confirm
+                                                                    Clear Quantity</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                This action will clear the quantity of the variant but <span style="color: rgb(225, 168, 188);">won't delete the variant</span>. 
+                                                                <p>Do you want to continue?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Cancel</button>
+                                                                <form method="POST" action="{{ url_for('product_management.delete_variant_view', product_id=product.id, variant_id=variant.id) }}">
+                                                                    <button type="submit" class="btn btn-danger" >Confirm</button>
+                                                                </form>    
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="current-price">{{ product.category_name }}</p>
+                                </td>
+                                <td>
+                                    <p class="current-price">$ {{ product.base_price }} NZD</p>
+                                </td>
+                                <td>
+                                    <p class="current-price">{{ product.stock_quantity }}</p>
+                                </td>
+                                <td>
+                                    <p class="current-price">
+                                        {% if product.is_active == 1 %}
+                                            Active
+                                        {% else %}
+                                            Deactivated
+                                        {% endif %}
+                                    </p>
+                                </td>
+                                <td>
+                                    {% if product.is_active == 1 %}
+                                    <a href="#" data-bs-toggle="modal"
+                                        data-bs-target="#deleteConfirmModal{{ product.id }}">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                            title="Remove Long Sleeves Boat Neck Midi Dress"
+                                            aria-label="Remove Long Sleeves Boat Neck Midi Dress"
+                                            aria-describedby="icon-title-Trash" aria-labelledby="icon-title-Trash"
+                                            titleid="icon-title-Trash">
+                                            <title></title>
+                                            <g id="Icon/Trash/24px" stroke="none" stroke-width="1" fill="none"
+                                                fill-rule="evenodd">
+                                                <path
+                                                    d="M20.7769877,4.84298476 L20.7769877,6.26403271 L19.7603662,6.26403271 L19.7603662,18.5712635 C19.7603662,20.4645127 18.22599,22 16.3316297,22 L16.3316297,22 L7.76089952,22 C5.86765033,22 4.33327408,20.4645127 4.33327408,18.5712635 L4.33327408,18.5712635 L4.33327408,6.26403271 L3,6.26403271 L3,4.84298476 L20.7769877,4.84298476 Z M18.3393183,6.26514377 L5.75543309,6.26514377 L5.75543309,18.5712635 C5.75543309,19.6767699 6.65428203,20.577841 7.76089952,20.577841 L7.76089952,20.577841 L16.3316297,20.577841 C17.4382472,20.577841 18.3393183,19.6767699 18.3393183,18.5712635 L18.3393183,18.5712635 L18.3393183,6.26514377 Z M10.377561,8.57637438 L10.377561,17.5559753 L8.95651304,17.5559753 L8.95651304,8.57637438 L10.377561,8.57637438 Z M14.8218079,8.57637438 L14.8218079,17.5559753 L13.40076,17.5559753 L13.40076,8.57637438 L14.8218079,8.57637438 Z M15.2217901,2 L15.2217901,3.42104795 L8.55541976,3.42104795 L8.55541976,2 L15.2217901,2 Z"
+                                                    id="Combined-Shape" fill="#253746"></path>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                    <a href="{{ url_for('product_management.edit_product_view', product_id=product['id']) }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" width="24px" height="20px" version="1.1" id="Layer_1" viewBox="0 0 502.001 502.001" xml:space="preserve">
+                                            <g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M489.809,32.002l-19.797-19.798C462.142,4.333,451.679,0,440.551,0s-21.59,4.333-29.459,12.202l-14.99,14.99     l-1.959-1.959c-3.905-3.904-10.235-3.905-14.143,0L62.146,343.088l0.011,0.004c-0.911,0.91-1.658,1.992-2.169,3.215     l-29.102,69.719L0.782,488.148c-1.562,3.742-0.71,8.056,2.157,10.923c1.913,1.914,4.472,2.93,7.073,2.93     c1.297,0,2.605-0.252,3.851-0.772l72.123-30.105c0.002-0.001,0.004-0.002,0.005-0.003l69.712-29.099     c1.223-0.51,2.305-1.257,3.215-2.168l0.004,0.011L476.778,122.01c1.875-1.875,2.929-4.419,2.929-7.071     c0-2.652-1.054-5.196-2.929-7.071l-1.959-1.959l14.99-14.989C506.052,74.676,506.052,48.246,489.809,32.002z M28.611,473.399     L43.596,437.5l20.915,20.914L28.611,473.399z M84.466,450.085l-32.541-32.54l20.772-49.763l61.532,61.531L84.466,450.085z      M151.852,418.65L83.36,350.159l271.839-271.84l68.492,68.492L151.852,418.65z M437.834,132.669l-68.492-68.492l17.73-17.73     l68.492,68.492L437.834,132.669z M475.666,76.776L460.822,91.62l-50.431-50.432l14.844-14.844     c4.091-4.091,9.53-6.344,15.316-6.344s11.227,2.253,15.317,6.344l19.797,19.797C484.111,54.588,484.111,68.33,475.666,76.776z"/>
+                                                        <path d="M255.258,199.397L110.627,344.029c-3.905,3.905-3.905,10.237,0,14.143c1.953,1.953,4.512,2.929,7.071,2.929     s5.118-0.977,7.071-2.929l144.632-144.633c3.905-3.905,3.905-10.237,0-14.142C265.495,195.492,259.165,195.492,255.258,199.397z"/>
+                                                        <path d="M300.255,154.4l-18.213,18.213c-3.905,3.905-3.905,10.237,0,14.143c1.953,1.952,4.512,2.929,7.071,2.929     s5.118-0.977,7.071-2.929l18.213-18.213c3.906-3.905,3.906-10.237,0.001-14.143C310.492,150.496,304.162,150.496,300.255,154.4z"/>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                    {% endif %}
+                                    <div class="modal fade" id="deleteConfirmModal{{ product.id }}"
+                                        tabindex="-1"
+                                        aria-labelledby="deleteConfirmModalLabel{{ product.id }}"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"
+                                                        id="deleteConfirmModalLabel{{ product.id }}">Confirm
+                                                        Deactivate</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>This action will deactivate this product.</p> 
+                                                    <p>If deactivated, it won't be shown to customers anymore.</p> 
+                                                    <p style="color: red;">This action can't be undone. Are you sure you want to continue?</p> 
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                    <form method="POST" action="{{ url_for('product_management.delete_product_view', product_id=product['id']) }}">
+                                                        <button type="submit" class="btn btn-danger" >Confirm</button>
+                                                    </form>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+    <nav aria-label="Page navigation"  class="d-flex justify-content-end me-5">
+        <ul class="pagination">
+            <li class="page-item {% if page <= 1 %}disabled{% endif %}">
+                <a class="page-link" href="{{ url_for('product_management.list_products', page=page-1) }}">Previous</a>
+            </li>
+            {% for p in range(1, total_pages + 1) %}
+            <li class="page-item {% if p == page %}active{% endif %}">
+                <a class="page-link" href="{{ url_for('product_management.list_products', page=p) }}">{{ p }}</a>
+            </li>
+            {% endfor %}
+            <li class="page-item {% if page >= total_pages %}disabled{% endif %}">
+                <a class="page-link" href="{{ url_for('product_management.list_products', page=page+1) }}">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+</section>
+{% endblock %}

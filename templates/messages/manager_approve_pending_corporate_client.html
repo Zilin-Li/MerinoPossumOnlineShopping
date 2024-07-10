@@ -1,0 +1,62 @@
+{% extends 'components/base.html' %}
+{% block title %}manager approve pending corporate client{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<div class="container my-4 py-3" style="background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <h2 class="text-center mb-4">Pending Corporate Client List</h2>
+  
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Client ID</th>
+          <th scope="col">Company Name</th>
+          <th scope="col">Discount Level</th>
+          <th scope="col">Credit Limit</th>
+          <th scope="col">Approve</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for client in pending_corporate_client_list %}
+          <form method="POST" action="{{ url_for('users.manager_approve_pending_corporate_client') }}" enctype="multipart/form-data">
+            <tr>
+              <th scope="row">{{ loop.index }}</th>
+              <td>
+                {{ client[0]| default('', true) }}
+                <input type="hidden" id="id" name="id" value="{{client[0]}}">
+              </td>
+              <td>
+                {{ client[2] | default('', true)}}
+                <input type="hidden" id="receive_id" name="receive_id" value="{{client[1]}}">
+              </td>
+              <td>
+                <select class="form-select" id="discount_level" name="discount_level" >
+                  <option value="0" selected>0% Off</option>
+                  <option value="1" >10% Off</option>
+                  <option value="2" >20% Off</option>
+                  <option value="3" >30% Off</option>
+                  <option value="4" >40% Off</option>
+                  <option value="5" >50% Off</option>
+                </select>
+              </td>                
+              <td>
+                <input type="number" step="0.01" id="credit_limit" name="credit_limit" min="0.00" required>
+              </td>      
+              <td>
+                <label>
+                  <input type="radio" name="is_approved" value="1" onchange="this.form.submit()">
+                  Approve
+                </label>
+              </td>
+            </tr>
+          </form>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+    <a href="{{ url_for('home') }}" class="btn btn-custom" style="min-width: 120px;font-size: 17px;">Back</a>
+  </div>
+</div>
+{% endblock %}

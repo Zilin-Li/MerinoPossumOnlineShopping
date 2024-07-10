@@ -1,0 +1,54 @@
+{% extends 'components/base.html' %}
+{% block title %}Staff View Order{% endblock %}
+{% block content %}
+
+<div class="customer-view-order-detail" >
+  <div class="customer-view-order-detail-container">
+
+  
+
+  <h1 class="text-center mb-4">Details of Order {{order_id}}</h1>
+  
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product ID</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Image</th>
+          <th scope="col">Color</th>
+          <th scope="col">Size</th>
+          <th scope="col">Price (NZD)</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total Price (NZD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in order_detail %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ product[0]| default('', true) }}</td>
+          <td>{{ product[1]| default('', true) }}</td>
+          <td>
+            <img src="{{'https://raw.githubusercontent.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_AK_IMGS/main/' + (product[2] if product[2] else 'default_image.jpg')}}" alt="Product Photo" class="img-fluid" style="width: 60px; height: 80px;">
+          </td>
+          <td>{{ product[3] | default('', true)}}</td>
+          <td>{{ product[4] | default('', true)}}</td>
+          <td>{{ product[5] | default('', true)}}</td>
+          <td>{{ product[6] | default('', true)}}</td>
+          <td>{{ product[7] | default('', true)}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <h5 class="text-left mb-4"><strong>Total price including GST</strong> is: {{order_sum[0]}} NZD.      <strong>Shipping fee</strong> is: {{order_sum[1]}} NZD.      Total amount paid is: {{order_sum[2]}} NZD</h5>
+  <h5 class="text-left mb-4"><strong>Delivery address</strong> is: {{order_sum[3]}}, {{order_sum[4]}}, {{order_sum[5]}}, {{order_sum[6]}}.      Post Code is: {{order_sum[7]}}</h5>
+  <h5 class="text-left mb-4"><strong>Note</strong>: {{order_sum[8]}}</h5>
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{{ url_for('customer_track_order.list_order') }}" class="btn btn-secondary" style="min-width: 120px;font-size: 17px;">Back</a>
+  </div>
+</div>
+</div>
+{% endblock %}

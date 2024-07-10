@@ -1,0 +1,141 @@
+.category-products-container{
+    width: 100%;
+    min-height: 70vh;
+    /* max-width: 90rem; */
+    min-width: 80rem;
+    padding:3rem 0;
+    /* background-color:pink; */
+
+}
+ .category-products{
+
+    width: 80%;
+    margin: 0 auto;
+
+ }
+ .category-products-header{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.75rem;
+       line-height: 1.28571;
+      margin-bottom: 0;
+      font-weight: 300 !important;
+      text-transform: uppercase;
+       letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+   
+ }
+ .category-search-tools{
+      
+      margin-bottom: 3rem;
+ }
+ .category-products-count{
+   font-size: .75rem;
+   line-height: 2;
+   font-weight: 400 !important;
+   font-family: "Open Sans", Helvetica, Arial, sans-serif;
+ }
+
+ .category-products-sort-form label{
+   min-width: 60px;
+   text-align: center;
+   color: #999;
+   margin-left: auto;
+   margin-right: .5rem;
+ }
+ .category-products-sort-form select{
+   font-size: 0.85rem;
+ }
+
+
+.category-products-list {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: start;
+   max-width: 1200px;
+   margin: auto;
+ }
+ 
+ 
+ .product-group {
+   width: 25%; 
+   display: flex ;
+   flex-direction: column;
+   margin-bottom: 2rem;
+   padding: 0 1rem;
+   justify-content: space-between;
+   box-sizing: border-box;
+   
+ }
+ 
+ 
+ .product-image {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+
+ }
+ 
+ .product-image a {
+   width: 100%;
+   height: 100%;
+ }
+ 
+ .product-image img {
+   width: 100%; 
+   height: auto;
+   aspect-ratio: 0.72109375;
+   
+   object-fit:cover; 
+   transition: transform 0.5s ease;
+ }
+ 
+ /* when product sold out */
+ .product-image .product-label {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5); 
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ 
+ .product-label .sold-out {
+   color: white;
+   font-size: 24px;
+   font-weight: bold;
+ }
+ 
+
+ .product-info, .price-box {
+   text-align: center; 
+   margin-top: 10px;
+ }
+/*  
+ .price-regular {
+   font-size: 16px;
+ }
+  */
+ .product-name {
+   display: block;
+   /* font-weight: 300 !important; */
+   color: #231F20;
+   font-size: 0.85rem;
+   margin: 1rem 0;
+   text-align: center;
+ }
+
+ .product-group:hover .product-name {
+   color: #0f4a8f;
+ }
+
+ .product-group:hover img{
+   transform: scale(1.05);
+ }
+ 

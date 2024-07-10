@@ -1,0 +1,58 @@
+{% extends 'components/base.html' %}
+
+{% block title %}
+Returns & Exchanges Policy
+{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5 return-policy">
+    <h1 class="policy-heading text-center mb-5">
+        <i class="fas fa-exchange-alt"></i> Returns & Exchanges Policy
+    </h1>
+    
+    <div class="policy-section mb-4 p-4">
+        <h3 class="section-heading mb-3">
+            <i class="fas fa-exclamation-circle"></i> Faulty Returns
+        </h3>
+        <p>If the products are faulty, wrongly described, or different from a sample shown, we’re so sorry! We will meet our legal obligations in the country in which the products were purchased. Just follow the returns process in-store or online.</p>
+    </div>
+    
+    <div class="policy-section p-4">
+        <h3 class="section-heading mb-3">
+            <i class="fas fa-retweet"></i> Change of Mind Returns
+        </h3>
+        <p>If you change your mind about a product you purchased from us online or in-store, we will refund the purchase price, or exchange (only available via stores) in the country of purchase, subject to the following conditions:</p>
+        <ol>
+            <li>
+                <i class="fas fa-store-alt"></i> Items purchased online can be returned in store with proof of purchase. In the case of online purchases, refunds will not include the cost of shipping, except as provided below.
+            </li>
+            <li>
+                <i class="fas fa-money-bill-wave"></i> Where possible, all refunds will be returned to the original forms of payment, otherwise an alternative refund tender will be offered.
+            </li>
+            <li>
+                <i class="fas fa-tags"></i> Items must be in original sale condition (unworn, unwashed, or otherwise unused with original tags/labels attached).
+            </li>
+            <li>
+                <i class="fas fa-user"></i> You may be asked to provide personal details for returns or exchanges. These details will be used for the purpose of processing the return.
+            </li>
+        </ol>
+        <p>Shipping costs may be refunded on faulty items only if the entire order is being returned and the customer provides proof of the shipping amount.</p>
+    </div>
+
+    <div class="text-center">
+        <a href="{{ url_for('home') }}" class="btn continue-shopping-btn">
+            <i class="fas fa-shopping-bag"></i> Continue Shopping
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+{% extends 'components/base.html' %}
+
+{% block title %}
+User Send Message
+{% endblock %}
+
+{% block content %}
+{% include 'components/message.html' %}
+
+<div class="container mb-5 py-5">
+
+  <h2 class="mt-5">User Received Messages</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sender</th>
+        <th scope="col">Content</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for message in messages %}
+      <tr>
+        <td>{{ message[1] }}</td>
+        <td>{{ message[3] }}</td>
+        <td>{{ message[4] }}</td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+
+  </table>
+
+  <h2 class="mt-5">User Send Message</h2>
+  <form method="POST" action="{{ url_for('messages.user_message') }}">
+    <div class="mb-3">
+      <label for="receiver_id" class="form-label">Select Receiver:</label>
+      <select name="receiver_id" id="receiver_id" class="form-select" required>
+        <option value="">Please select receiver</option>
+        {% for user in staff_users %}
+        <option value="{{ user[0] }}">{{ user[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="message_content" class="form-label">Message Content:</label>
+      <textarea name="message_content" id="message_content" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send Message</button>
+  </form>
+</div>
+
+{% endblock %}

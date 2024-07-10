@@ -1,0 +1,39 @@
+{% extends 'components/base.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+
+
+<div class="min-vh-100 d-flex justify-content-center" style="background: linear-gradient(135deg, #af69b7 0%, #d294ce 100%);padding-top:3%; margin-top:0">
+
+  <div style="width: 100%; max-width: 60vw;">
+    <div class="container my-4 py-3" style="background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+      <h3 class="text-center mb-4">Your Profile</h3>
+      <div class="card mb-5">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-3">{{ user[2] }} {{ user[3] }} </h4>
+          {% if role_id==3 %}
+          <p class="card-text" style="font-size: 17px;"><strong>Job Title:</strong> {{ user[11] }}</p>
+          <p class="card-text" style="font-size: 17px;"><strong>Hire Date:</strong> {{ date }}</p>
+          {% endif %}
+          <p class="card-text" style="font-size: 17px;"><strong>Username:</strong> {{ user[0] }}</p>
+          <p class="card-text" style="font-size: 17px;"><strong>Email:</strong> {{ user[1] }}</p>
+          <p class="card-text" style="font-size: 17px;"><strong>Phone Number:</strong> {{ user[4] }}</p>
+          <p class="card-text" style="font-size: 17px;"><strong>Street:</strong> {{ user[5] }}</p>
+          <p class="card-text" style="font-size: 17px;"><strong>City:</strong> {{ user[6] }}</p>
+          <p class="card-text" style="font-size: 17px;"><strong>State:</strong> {{ user[7] }}</p>
+          <p class="card-text" style="font-size: 17px;"><strong>Country:</strong> {{ user[8] }}</p>
+          <p class="card-text" style="font-size: 17px;"><strong>Post Code:</strong> {{ user[9] }}</p>
+          
+          <div class="d-flex justify-content-between mt-4">
+            <a href="{{ url_for('home') }}" class="btn btn-secondary" style="min-width: 120px;font-size: 17px;">Back</a>
+            <a href="{{ url_for('manage_account.change_password') }}" class="btn btn-danger" style="min-width: 120px;font-size: 17px;">Change Password</a>
+            <a href="{{ url_for('manage_account.edit_user_profile') }}" class="btn btn-custom" style="min-width: 120px;font-size: 17px;">Edit Profile</a>
+          </div>
+        </div>
+      </div>      
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

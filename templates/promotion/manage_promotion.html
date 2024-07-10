@@ -1,0 +1,52 @@
+{% extends 'components/base.html' %}
+
+{% block title %}
+Manage Promotions
+{% endblock %}
+
+{% block content %}
+{% include 'components/message.html' %}
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Manage Promotions</h1>
+    <a href="{{ url_for('manage_promotion.add_promotion') }}" class="btn btn-primary">Add New Promotion</a>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Promotion Name</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Discount Rate</th>
+          <th scope="col">Description</th>
+          <th scope="col">Actions</th>
+          <th>Is Active</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for promotion in promotions %}
+        <tr>
+          <td>{{ promotion.promotion_name }}</td>
+          <td>{{ promotion.start_date }}</td>
+          <td>{{ promotion.end_date }}</td>
+          <td>{{ promotion.discount_rate }}</td>
+          <td>{{ promotion.description }}</td>
+          <td>{{ "Yes" if promotion.is_active else "No" }}</td>
+          <td>
+            <a href="{{ url_for('manage_promotion.edit_promotion', promotion_id=promotion.id) }}"
+              class="btn btn-warning btn-sm g-2">Edit</a>
+            <form action="{{ url_for('manage_promotion.delete_promotion', promotion_id=promotion.id) }}" method="post"
+              style="display:inline-block;">
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

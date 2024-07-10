@@ -1,0 +1,53 @@
+{% extends 'components/base.html' %}
+{% block title %}Card Type Details{% endblock %}
+{% block content %}
+{% include 'components/message.html' %}
+<section class="manage_reward_giftcard">
+    <div class="manage_reward_giftcard-container">
+        <div class="manage_reward_giftcard-header">
+            <h1>Card Type Details</h1>
+        </div>
+
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-4 pe-3">
+                    <div class="gift-cards-img-container mb-3">
+                        <img src="{{ url_for('static', filename='images/gift_cards/gift_card.jpg') }}" alt="Gift Cards" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <form method="POST" action="{{ url_for('manage_gift_cards.update_card_type_submit') }}" enctype="multipart/form-data">
+                        <h2 class="mb-3">{{ card_type_detail.type_name }}</h2>
+                        <input type="hidden" name="type_id" value="{{ card_type_detail.id }}">
+        
+                        <div class="mb-3">
+                            <label for="card_value" class="form-label"><strong>Card Value:</strong></label>
+                            <input type="number" class="form-control" id="card_value" name="card_value"
+                            value="{{ '%.2f'|format(card_type_detail.value|float) }}" min="5.00" step="5.00">
+                        </div>
+        
+                        <div class="mb-3">
+                            <label for="status" class="form-label"><strong>Status</strong><span style="color: red"> *</span></label>
+                            <select class="form-select" id="status" name="status">
+                                <option value="1" {% if card_type_detail.is_active == 1 %}selected{% endif %}>Active</option>
+                                <option value="0" {% if card_type_detail.is_active == 0 %}selected{% endif %}>Inactive</option>
+                            </select>
+                        </div>
+        
+                        <div class="mb-3">
+                            <label for="card_description" class="form-label"><strong>Description:</strong></label>
+                            <textarea class="form-control" id="card_description" name="card_description" rows="4"
+                                style="min-height: 100px; overflow-y: auto;">{{ card_type_detail.description }}</textarea>
+                        </div>
+        
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('manage_gift_cards.display_gift_card_types') }}" class="btn btn-primary"><strong>← Back to List</strong></a>
+                            <button type="submit" class="btn btn-success"><strong>Update Type Details</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+</section>
+{% endblock %}

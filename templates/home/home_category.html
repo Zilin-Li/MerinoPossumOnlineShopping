@@ -1,0 +1,107 @@
+<section class="home-category-banner">
+    <div class="home-category-container"> 
+        <div class="category-grid">
+            <!-- Men's Category -->
+            <div class="category-item large-img">
+                <div class="img-box">
+                    <a href="{{ url_for('categories.display_products', category_id=2, category_name='mens') }}"></a>
+                   
+
+
+                        <img src="{{ url_for('static', filename='images/category/man1.jpg') }}" alt="Mens">
+
+                    
+
+                </div>  
+                <div class="content-box">
+                    <div class="banner-title" >
+                        <span>
+                            MENS
+                        </span>
+                        <span class="border-bt-hover"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Women's Category -->
+            <div class="category-item large-img">
+                <div class="img-box">
+                    <a href="{{ url_for('categories.display_products', category_id=1, category_name='womens') }}"></a>
+                   
+                        <img src="{{ url_for('static', filename='images/category/women1.jpg') }}" alt="women">
+
+
+                </div>  
+                <div class="content-box">
+                    <div class="banner-title" >
+                        <span>
+                            women
+                        </span>
+                        <span class="border-bt-hover"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Accessories Category -->
+            <div class="category-item small-img">
+                <div class="img-box">
+                    <a href="{{ url_for('categories.display_products', category_id=3, category_name='accessories') }}"></a>
+                        <img src="{{ url_for('static', filename='images/category/accessories.jpg') }}" alt="Accessories">
+
+                </div>  
+                <div class="content-box">
+                    <div class="banner-title" >
+                        <span>
+                            accessories
+                        </span>
+                        <span class="border-bt-hover"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Kids -->
+            <div class="category-item small-img">
+                <div class="img-box">
+                    <a href="{{ url_for('categories.display_products', category_id=4, category_name='kids') }}"></a>
+                        <img src="{{ url_for('static', filename='images/category/kids2.jpg') }}" alt="Kids">
+
+                 
+
+                </div>  
+                <div class="content-box">
+                    <div class="banner-title" >
+                        <span>
+                            kids&baby
+                        </span>
+                        <span class="border-bt-hover"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Homeware Category -->
+            <div class="category-item small-img">
+                <div class="img-box">
+                    <a href="{{ url_for('categories.display_products', category_id=5, category_name='homewares') }}"></a>
+                        <img src="{{ url_for('static', filename='images/category/homeware.jpg') }}" alt="Homeware">
+
+                   
+
+                </div>  
+                <div class="content-box">
+                    <div class="banner-title" >
+                        <span>
+                            homeware
+                        </span>
+                        <span class="border-bt-hover"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+</section>
